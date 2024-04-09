@@ -246,76 +246,6 @@
         "height": 1
     },
     {
-        "id": "d5652d82b59fcb01",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "5b3f2c5e2ba67607",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 11,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "59e12070d57da139",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 13,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "c0d2a5f069f0aa61",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 14,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "19d27ec92886626a",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 15,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "24fafe9b6657dd65",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 16,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "fa5aa951c1dbf049",
-        "type": "ui_spacer",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "spacer",
-        "group": "aed689e284f65765",
-        "order": 17,
-        "width": 3,
-        "height": 1
-    },
-    {
         "id": "2d51d403d65e5320",
         "type": "ui_group",
         "name": "Shore Power & Charge Cycle",
@@ -360,7 +290,7 @@
         "type": "function",
         "z": "e595066f0438a795",
         "name": "Debug for global stored values ",
-        "func": "const variableNames = [\n    \"AcFixed\",\n    \"BalanceInterval\",\n    \"BalanceTime\",\n    \"BattSoc\",\n    \"BmsBalancing\",\n    \"ChargeEnabled\",\n    \"ChargeToFull\",\n    \"CurrentLimitOverride\",\n    \"LastBalance\",\n    \"LastBalanceDate\",\n    \"MaxSoc\",\n    \"MultiRestartSoc\",\n    \"MultiState\",\n    \"ShoreMaxCurrent\",\n    \"SolarMgmt\",\n    \"SystemVoltage\",\n    \"VesselInput\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
+        "func": "const variableNames = [\n    \"AcFixed\",\n    \"BalanceInterval\",\n    \"BalanceTime\",\n    \"BattSoc\",\n    \"BmsBalancing\",\n    \"ChargeEnabled\",\n    \"ChargeToFull\",\n    \"CurrentLimitOverride\",\n    \"LastBalance\",\n    \"MaxSoc\",\n    \"MultiRestartSoc\",\n    \"MultiState\",\n    \"ShoreMaxCurrent\",\n    \"SolarMgmt\",\n    \"SystemVoltage\",\n    \"VesselInput\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -368,7 +298,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "8c1672f801313817"
@@ -389,7 +319,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 600,
-        "y": 580,
+        "y": 520,
         "wires": []
     },
     {
@@ -414,7 +344,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "5b93219ec9a70fbe"
@@ -428,7 +358,7 @@
         "name": "Debug",
         "info": "",
         "x": 50,
-        "y": 520,
+        "y": 460,
         "wires": []
     },
     {
@@ -737,56 +667,6 @@
         ]
     },
     {
-        "id": "9bb208f955734dc3",
-        "type": "victron-input-custom",
-        "z": "e595066f0438a795",
-        "service": "com.victronenergy.battery/0",
-        "path": "/Settings/Battery/NominalVoltage",
-        "serviceObj": {
-            "service": "com.victronenergy.battery/0",
-            "name": "Aweh BMS (0)"
-        },
-        "pathObj": {
-            "path": "/Settings/Battery/NominalVoltage",
-            "name": "/Settings/Battery/NominalVoltage",
-            "type": "number"
-        },
-        "name": "",
-        "onlyChanges": false,
-        "x": 200,
-        "y": 460,
-        "wires": [
-            [
-                "048b56da64fee884"
-            ]
-        ]
-    },
-    {
-        "id": "048b56da64fee884",
-        "type": "change",
-        "z": "e595066f0438a795",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "SystemVoltage",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 530,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "740f0a4e23ca1d56",
         "type": "function",
         "z": "a0153a2235a01066",
@@ -852,7 +732,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1150,
+        "x": 890,
         "y": 360,
         "wires": []
     },
@@ -1081,7 +961,7 @@
         "y": 360,
         "wires": [
             [
-                "d7309452e99ce2e5"
+                "71f3e6035ef1ebf1"
             ]
         ]
     },
@@ -1160,7 +1040,7 @@
         "name": "Detect when balancing is happening and completed",
         "info": "",
         "x": 190,
-        "y": 800,
+        "y": 780,
         "wires": []
     },
     {
@@ -1184,7 +1064,7 @@
         "step": 1,
         "className": "",
         "x": 130,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "bad182fe5ad53e8e"
@@ -1269,7 +1149,7 @@
         "showGlow": true,
         "name": "Bms Balancing",
         "x": 1040,
-        "y": 820,
+        "y": 900,
         "wires": []
     },
     {
@@ -1350,33 +1230,6 @@
         ]
     },
     {
-        "id": "d7309452e99ce2e5",
-        "type": "change",
-        "z": "a0153a2235a01066",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "LastBalanceDate",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 360,
-        "wires": [
-            [
-                "71f3e6035ef1ebf1"
-            ]
-        ]
-    },
-    {
         "id": "8d13abf189e782ed",
         "type": "change",
         "z": "a0153a2235a01066",
@@ -1444,7 +1297,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 190,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "c3097bb109292fc4",
@@ -1457,7 +1310,7 @@
         "type": "function",
         "z": "a0153a2235a01066",
         "name": "Detect Absorption CVL",
-        "func": "const SystemVoltage = global.get(\"SystemVoltage\");\nconst BALANCING_THRESHOLD = 1.18125 * SystemVoltage; // 14.175 / 28.35V\n\nconst cvl = msg.payload;\n\nif (cvl > BALANCING_THRESHOLD) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Requesting Absorption\"});\n    return {payload: 1};\n}\n\nnode.status({fill: \"red\", shape: \"dot\", text: \"Not Requesting Absorption\"});\nreturn {payload: 0};",
+        "func": "const AbsorptionThreshold = flow.get(\"AbsorptionThreshold\");\n\nconst cvl = msg.payload;\n\nif (cvl > AbsorptionThreshold) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Requesting Absorption\"});\n    return {payload: 1};\n}\n\nnode.status({fill: \"red\", shape: \"dot\", text: \"Not Requesting Absorption\"});\nreturn {payload: 0};",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1465,7 +1318,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 1140,
+        "y": 1200,
         "wires": [
             [
                 "2a3c7a97c7504deb",
@@ -1493,7 +1346,7 @@
         "to": "",
         "reg": false,
         "x": 990,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -1503,7 +1356,7 @@
         "type": "function",
         "z": "a0153a2235a01066",
         "name": "Detect Balancing",
-        "func": "const SystemVoltage = global.get(\"SystemVoltage\");\nconst BALANCING_THRESHOLD = 1.18125 * SystemVoltage; // 14.175 / 28.35V\n\nconst voltage = msg.payload;\n\nconst balancing = voltage >= BALANCING_THRESHOLD;\n\nif (balancing) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Balancing\"});\n} else {\n    node.status({fill: \"green\", shape: \"ring\", text: \"Idle\"});\n}\n\nreturn {\n    payload: + balancing,  // bool -> int\n};",
+        "func": "const AbsorptionThreshold = flow.get(\"AbsorptionThreshold\");\n\nconst voltage = msg.payload;\n\nconst balancing = voltage >= AbsorptionThreshold;\n\nif (balancing) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Balancing\"});\n} else {\n    node.status({fill: \"green\", shape: \"ring\", text: \"Idle\"});\n}\n\nreturn {\n    payload: + balancing,  // bool -> int\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1511,7 +1364,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "bdd49484fa139c07",
@@ -1539,7 +1392,7 @@
         "to": "",
         "reg": false,
         "x": 820,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "923b3265f5a059a7"
@@ -1553,7 +1406,7 @@
         "name": "Save State",
         "info": "",
         "x": 60,
-        "y": 1300,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1639,7 +1492,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 1340,
+        "y": 1400,
         "wires": [
             [
                 "c1374f4e95ee660f"
@@ -1659,7 +1512,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 1340,
+        "y": 1400,
         "wires": [
             [
                 "b5b2aff3bee12061"
@@ -1673,7 +1526,7 @@
         "property": "payload",
         "name": "",
         "x": 590,
-        "y": 1340,
+        "y": 1400,
         "wires": [
             [
                 "d6427b9ecace7567"
@@ -1692,7 +1545,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 790,
-        "y": 1340,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -1770,7 +1623,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 450,
-        "y": 1340,
+        "y": 1400,
         "wires": [
             [
                 "0d0d81337a6c63a8"
@@ -1819,7 +1672,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 630,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "f39cb4e620f6587a",
@@ -1845,7 +1698,7 @@
         "repair": false,
         "outputs": 1,
         "x": 790,
-        "y": 880,
+        "y": 940,
         "wires": [
             [
                 "1c8398f3cab85cb6"
@@ -1872,7 +1725,7 @@
         "to": "",
         "reg": false,
         "x": 1010,
-        "y": 880,
+        "y": 940,
         "wires": [
             []
         ]
@@ -1890,7 +1743,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "0771e50b5d9a6f16"
@@ -1917,7 +1770,7 @@
         "to": "",
         "reg": false,
         "x": 610,
-        "y": 980,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -1942,7 +1795,7 @@
         "to": "",
         "reg": false,
         "x": 980,
-        "y": 920,
+        "y": 980,
         "wires": [
             []
         ]
@@ -1990,7 +1843,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 150,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "ddcca6f206c0be70"
@@ -2051,7 +1904,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "65f2ef9b0f400360"
@@ -2076,7 +1929,7 @@
         "repair": false,
         "outputs": 1,
         "x": 740,
-        "y": 1180,
+        "y": 1240,
         "wires": [
             [
                 "bad182fe5ad53e8e"
@@ -2103,7 +1956,7 @@
         "to": "",
         "reg": false,
         "x": 770,
-        "y": 1140,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -2115,7 +1968,7 @@
         "name": "Trigger balancing from the BMS",
         "info": "",
         "x": 130,
-        "y": 1060,
+        "y": 1120,
         "wires": []
     },
     {
@@ -2138,7 +1991,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -2161,11 +2014,81 @@
         "name": "",
         "onlyChanges": false,
         "x": 150,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "1038f676e6d3d138"
             ]
+        ]
+    },
+    {
+        "id": "46a26c67b0b595f0",
+        "type": "victron-input-custom",
+        "z": "a0153a2235a01066",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Settings/Battery/NominalVoltage",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Aweh BMS (0)"
+        },
+        "pathObj": {
+            "path": "/Settings/Battery/NominalVoltage",
+            "name": "/Settings/Battery/NominalVoltage",
+            "type": "number"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 200,
+        "y": 840,
+        "wires": [
+            [
+                "1211c0daa0aecb0c"
+            ]
+        ]
+    },
+    {
+        "id": "1211c0daa0aecb0c",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Calculate Absorption Threshold",
+        "func": "const system_voltage = msg.payload;\nconst threshold = 1.18125 * system_voltage;  // 14.175 / 28.35V\n\nnode.status({text: threshold});\n\nreturn {\n    payload: threshold,\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 840,
+        "wires": [
+            [
+                "dbafb36232b6d50c"
+            ]
+        ]
+    },
+    {
+        "id": "dbafb36232b6d50c",
+        "type": "change",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "AbsorptionThreshold",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 840,
+        "wires": [
+            []
         ]
     },
     {
@@ -2263,7 +2186,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input A",
         "group": "2d51d403d65e5320",
-        "order": 10,
+        "order": 12,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2271,7 +2194,7 @@
         "label": "A",
         "format": "{{value}}",
         "min": 0,
-        "max": "50",
+        "max": "20",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -2291,7 +2214,7 @@
         "z": "2cfbbcc39f1935b5",
         "group": "2d51d403d65e5320",
         "name": "Display Inverter/Charger State",
-        "order": 14,
+        "order": 13,
         "width": 9,
         "height": 2,
         "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n    margin-bottom: 0.2ex;\n  }\n\n  .rectangle .label {\n    font-weight: bold;\n    margin: 0;\n    color: black;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 3 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">On</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 2 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Inverter</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 1 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Charger</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 4 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Off</span>\n    </div>\n</div>\n",
@@ -2367,7 +2290,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input W",
         "group": "2d51d403d65e5320",
-        "order": 9,
+        "order": 11,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2395,7 +2318,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input V",
         "group": "2d51d403d65e5320",
-        "order": 11,
+        "order": 10,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2857,11 +2780,11 @@
         "type": "ui_numeric",
         "z": "d2855c6ff5fe1d8c",
         "name": "Sailing Restart SOC",
-        "label": "Sailing Restart SOC",
+        "label": "Sailing Restart SoC",
         "tooltip": "This value represents the lower state of charge at wich we will start charging again. This value is only used when connected on shore power to have the batteries perform small cycles and not remain fully charged as this results in damage to the cells. ",
         "group": "2d51d403d65e5320",
-        "order": 5,
-        "width": 5,
+        "order": 6,
+        "width": "7",
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -2914,11 +2837,11 @@
         "type": "ui_numeric",
         "z": "d2855c6ff5fe1d8c",
         "name": "Storage Max SOC",
-        "label": "Storage Max SOC",
+        "label": "Storage Max SoC",
         "tooltip": "This value sets the maximum threshold of the battery charge is %. Once reached, charging sources will stop.",
         "group": "2d51d403d65e5320",
-        "order": 6,
-        "width": 4,
+        "order": 3,
+        "width": "7",
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -3029,11 +2952,11 @@
         "type": "ui_numeric",
         "z": "d2855c6ff5fe1d8c",
         "name": "Storage Restart SOC",
-        "label": "Storage Restart SOC",
+        "label": "Storage Restart SoC",
         "tooltip": "This value represents the lower state of charge at wich we will start charging again. This value is only used when connected on shore power to have the batteries perform small cycles and not remain fully charged as this results in damage to the cells. ",
         "group": "2d51d403d65e5320",
         "order": 4,
-        "width": 4,
+        "width": "7",
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -3057,11 +2980,11 @@
         "type": "ui_numeric",
         "z": "d2855c6ff5fe1d8c",
         "name": "Sailing Max SOC",
-        "label": "Sailing Max SOC",
+        "label": "Sailing Max Soc",
         "tooltip": "This value sets the maximum threshold of the battery charge is %. Once reached, charging sources will stop.",
         "group": "2d51d403d65e5320",
-        "order": 7,
-        "width": 5,
+        "order": 5,
+        "width": "7",
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -3162,7 +3085,7 @@
         "id": "6baec025b7409eda",
         "type": "ui_led",
         "z": "d2855c6ff5fe1d8c",
-        "order": 13,
+        "order": 9,
         "group": "2d51d403d65e5320",
         "width": 3,
         "height": 1,
@@ -3190,7 +3113,7 @@
         "z": "d2855c6ff5fe1d8c",
         "name": "Multiplus Management",
         "group": "2d51d403d65e5320",
-        "order": 12,
+        "order": 8,
         "width": 6,
         "height": 1,
         "label": "Multiplus Management",
@@ -3234,7 +3157,7 @@
         "z": "d2855c6ff5fe1d8c",
         "name": "Cycle Management setting",
         "group": "2d51d403d65e5320",
-        "order": 3,
+        "order": 2,
         "width": 9,
         "height": 1,
         "label": "",
