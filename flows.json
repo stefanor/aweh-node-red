@@ -1,0 +1,5334 @@
+[
+    {
+        "id": "e595066f0438a795",
+        "type": "tab",
+        "label": "OP - MANDATORY Universal nodes ",
+        "disabled": false,
+        "info": "These nodes must ALLWAYS be implemented",
+        "env": []
+    },
+    {
+        "id": "a0153a2235a01066",
+        "type": "tab",
+        "label": "OP - MANDATORY Balancing Sub-Flow & System-Wide Vars ",
+        "disabled": false,
+        "info": "These nodes must ALLWAYS be implemented unless no charging sequences are being used\n\nThe base of this flow is managed with BMS returning info on balancing cells or not. \nAdapt accordingly. Further info on what to do in description of balancing timer and activation",
+        "env": []
+    },
+    {
+        "id": "88528a05a79df186",
+        "type": "tab",
+        "label": "OP -Dynamic Current Limiting",
+        "disabled": false,
+        "info": "This Flow is used to limit the multiplus or quattro charging current based to what max current draw is set for generator or shore power. This flow uses 2 ET112 power meters but one of these power analysers can be replaced by the Multiplus/quattro node as long as it provides a reading for the Amps drawn on the input. This function also requires a digital input to trigger between shore or generator. This switch can be replaced by input 1 or 2 on quattros",
+        "env": []
+    },
+    {
+        "id": "d2855c6ff5fe1d8c",
+        "type": "tab",
+        "label": "OP - Charge Cycle Management",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "81c7a8a38f0557f0",
+        "type": "tab",
+        "label": "OP - Solar cycle Management",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "11a4bfd096900c1f",
+        "type": "tab",
+        "label": "Alternator Mgmt",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "victron-client-id",
+        "type": "victron-client"
+    },
+    {
+        "id": "39ad39b479732dac",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "true",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "aed689e284f65765",
+        "type": "ui_group",
+        "name": "Dynamic Current Limit",
+        "tab": "7e2c0f9765da0a44",
+        "order": 2,
+        "disp": true,
+        "width": "9",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "0d42c411c0f4bfb3",
+        "type": "ui_group",
+        "name": "Debugging and test",
+        "tab": "717fcdffd3a123ff",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "7e2c0f9765da0a44",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "717fcdffd3a123ff",
+        "type": "ui_tab",
+        "d": true,
+        "name": "Debugging and test",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0489adf761799c8a",
+        "type": "ui_group",
+        "name": "Charge cycle management",
+        "tab": "7e2c0f9765da0a44",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "1de5e9b7b8145067",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "ac4b716fdfe49bfc",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "bfe20f37dd8c181d",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1f5108191bb7330a",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 12,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "0d2ca6014d4397c9",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 19,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "c0317c68841420ba",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 21,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "af4cc6ee5f16bc57",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 28,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "476fef9137c34837",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 29,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f607591958020ecd",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 31,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0a0a91919a4a53f5",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 33,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4de5ac1058d24c3b",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 34,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "99de6690b2058260",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 35,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "16428ba5fdde66f6",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2948b81b963d7965",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 37,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "71e8d44fc798d7b5",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 38,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fadb117fddf14403",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "0489adf761799c8a",
+        "order": 39,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d5652d82b59fcb01",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5b3f2c5e2ba67607",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "59e12070d57da139",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 13,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c0d2a5f069f0aa61",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 14,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "19d27ec92886626a",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 15,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "24fafe9b6657dd65",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 16,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "fa5aa951c1dbf049",
+        "type": "ui_spacer",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "spacer",
+        "group": "aed689e284f65765",
+        "order": 17,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "5bdd7071be620899",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "Default StorMaxSOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "60",
+        "payloadType": "num",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "2ce6e942e241f4c5"
+            ]
+        ]
+    },
+    {
+        "id": "2ce6e942e241f4c5",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Store StorMaxSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar StorMaxSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"StorMaxSoc\", StorMaxSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b93219ec9a70fbe",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Debug for global stored values ",
+        "func": "// Define an array of variable names used in the previous functions\nvar variableNames = [\n    \"LastBalance\",\n    \"BalanceInterval\",\n    \"BalanceTime\",\n    \"MaxSoc\",\n    \"RestartSOC\",\n    \"ChargeEnabled\",\n    \"VesselInput\",\n    \"MultiSOCmgmt\",\n    \"MultiState\",\n    \"StbdAltTemp\",\n    \"PortAltTemp\",\n    \"BattSoc\",\n    \"AltMaxTemp\",\n    \"AltSOCmgmt\",\n    \"AcFixed\",\n    \"CurrentLimitOverride\",\n    \"ShoreMaxCurrent\",\n    \"GenMaxCurrent\",\n    \"BalanceNeed\",\n    \"LastBalanceDate\",\n    \"AlternatorState\",\n    \"ShoreGenSwitch\",\n    \"BattVoltage\",\n    \"BmsBalancing\",\n    \"SolarMgmt\",\n    \"AltTout\",\n    \"ChargeEnabledSol\",\n    \"ChargeEnabledAlt\"\n];\n\n// Create an object to store the values\nvar globalValues = {};\n\n// Retrieve the values from global context\nvariableNames.forEach(function (variableName) {\n    var value = global.get(variableName);\n    globalValues[variableName] = value;\n});\n\n// Send the object in the output message\nmsg.payload = globalValues;\n\n// Pass the message to the next node\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 620,
+        "wires": [
+            [
+                "8c1672f801313817"
+            ]
+        ]
+    },
+    {
+        "id": "8c1672f801313817",
+        "type": "debug",
+        "z": "e595066f0438a795",
+        "name": "All stored values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a9fc34a6164cbf90",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 620,
+        "wires": [
+            [
+                "5b93219ec9a70fbe"
+            ]
+        ]
+    },
+    {
+        "id": "4a3c0f4f4028d864",
+        "type": "comment",
+        "z": "e595066f0438a795",
+        "name": "Debug",
+        "info": "",
+        "x": 190,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "153ab54281d9537e",
+        "type": "comment",
+        "z": "e595066f0438a795",
+        "name": "Universal global variables",
+        "info": "",
+        "x": 130,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "04277a6155c283cb",
+        "type": "victron-input-battery",
+        "z": "e595066f0438a795",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Soc",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Cavendish BMS"
+        },
+        "pathObj": {
+            "path": "/Soc",
+            "type": "float",
+            "name": "State of charge (%)"
+        },
+        "name": "Battery SOC",
+        "onlyChanges": false,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "3aa8c53a4b9dff69"
+            ]
+        ]
+    },
+    {
+        "id": "3aa8c53a4b9dff69",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Store BattSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar BattSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"BattSoc\", BattSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 340,
+        "wires": [
+            [
+                "f91dc601970363d1"
+            ]
+        ]
+    },
+    {
+        "id": "f91dc601970363d1",
+        "type": "ui_gauge",
+        "z": "e595066f0438a795",
+        "name": "Battery SOC",
+        "group": "0489adf761799c8a",
+        "order": 42,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Battery SOC",
+        "label": "%",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "90",
+        "diff": false,
+        "className": "",
+        "x": 1370,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "81eb4577edd4847e",
+        "type": "ui_slider",
+        "z": "e595066f0438a795",
+        "name": "",
+        "label": "Battery Soc",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "20",
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "3aa8c53a4b9dff69"
+            ]
+        ]
+    },
+    {
+        "id": "43794d22e6b02aa9",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "Default  Storage Restart SOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "50",
+        "payloadType": "num",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "c042d7d6cafaf81c"
+            ]
+        ]
+    },
+    {
+        "id": "c042d7d6cafaf81c",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Store StorRestartSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar StorRestartSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"StorRestartSoc\", StorRestartSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "741fa095bb9d5e2c",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "Default Sail RestartSOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "85",
+        "payloadType": "num",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "a324571414ae4df2"
+            ]
+        ]
+    },
+    {
+        "id": "a324571414ae4df2",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Store SailRestartSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar SailRestartSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"SailRestartSoc\", SailRestartSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9b9298a19589e0ed",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "Default SailMaxSOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "98",
+        "payloadType": "num",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "65bf84d251d8e321"
+            ]
+        ]
+    },
+    {
+        "id": "65bf84d251d8e321",
+        "type": "function",
+        "z": "e595066f0438a795",
+        "name": "Store SailMaxSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar SailMaxSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"SailMaxSoc\", SailMaxSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "37327a227c6dbce8",
+        "type": "inject",
+        "z": "e595066f0438a795",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 840,
+        "wires": [
+            [
+                "7d0c59df5cc88c9f",
+                "346f2584009a1f61"
+            ]
+        ]
+    },
+    {
+        "id": "7d0c59df5cc88c9f",
+        "type": "victron-output-custom",
+        "z": "e595066f0438a795",
+        "service": "com.victronenergy.platform",
+        "path": "/Device/Reboot",
+        "serviceObj": {
+            "service": "com.victronenergy.platform",
+            "name": "Venus"
+        },
+        "pathObj": {
+            "path": "/Device/Reboot",
+            "name": "/Device/Reboot",
+            "type": "number"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 690,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "0f0c59f03917250d",
+        "type": "victron-input-custom",
+        "z": "e595066f0438a795",
+        "service": "com.victronenergy.platform",
+        "path": "/Device/Reboot",
+        "serviceObj": {
+            "service": "com.victronenergy.platform",
+            "name": "Venus"
+        },
+        "pathObj": {
+            "path": "/Device/Reboot",
+            "name": "/Device/Reboot",
+            "type": "number"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 220,
+        "y": 920,
+        "wires": [
+            [
+                "346f2584009a1f61"
+            ]
+        ]
+    },
+    {
+        "id": "346f2584009a1f61",
+        "type": "debug",
+        "z": "e595066f0438a795",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "740f0a4e23ca1d56",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "BalanceNeed on function (BalanceNeed)",
+        "func": "// Load the required variables at the beginning of the function\nvar currentTimestamp = Date.now();\nvar LastBalance = global.get(\"LastBalance\");\nvar BalanceNeed = global.get(\"BalanceNeed\");\nvar BalanceInterval = global.get(\"BalanceInterval\");\n\n// Check if BalanceNeed is already 1; if so, stop the function and do nothing\nif (BalanceNeed === 1) {\n    return null;\n} else if (BalanceNeed === 0) {\n    // Calculate the time elapsed since the last balance in milliseconds (BalanceSpan)\n    var BalanceSpan = currentTimestamp - LastBalance;\n\n    // Convert the balance interval from days to milliseconds\n    var BalanceIntervalMs = BalanceInterval * 24 * 60 * 60 * 1000; // Convert days to milliseconds\n\n    // Compare BalanceSpan with BalanceInterval (in milliseconds)\n    if (BalanceSpan >= BalanceIntervalMs) {\n        // If BalanceSpan is greater than or equal to BalanceInterval, update BalanceNeed to 1 in the global context\n        global.set(\"BalanceNeed\", 1);\n    }\n}\n\n// Set msg.payload to the value of BalanceNeed\nmsg.payload = BalanceNeed;\n\n// Return the message with the updated payload\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a039f79dac8db60",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "Run every ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "740f0a4e23ca1d56"
+            ]
+        ]
+    },
+    {
+        "id": "604f46ac7f105e7b",
+        "type": "ui_led",
+        "z": "a0153a2235a01066",
+        "order": 22,
+        "group": "0489adf761799c8a",
+        "width": 4,
+        "height": 1,
+        "label": "Balancing Required",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "BalanceNeed feedback",
+        "x": 1450,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "7754571d84cb45b0",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "LastBalanceDate feedback on dashboard",
+        "func": "// Retrieve the \"LastBalanceDate\" from the global context\nvar lastBalanceDate = global.get(\"LastBalanceDate\");\n\n// Create a message with the \"LastBalanceDate\" as text\nmsg.payload = lastBalanceDate;\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 260,
+        "wires": [
+            [
+                "71f3e6035ef1ebf1"
+            ]
+        ]
+    },
+    {
+        "id": "7dd02361d24e322a",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "7754571d84cb45b0"
+            ]
+        ]
+    },
+    {
+        "id": "71f3e6035ef1ebf1",
+        "type": "ui_text",
+        "z": "a0153a2235a01066",
+        "group": "0489adf761799c8a",
+        "order": 23,
+        "width": 5,
+        "height": 1,
+        "name": "LastBalanceDate",
+        "label": "Last Balance Date",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4b0767c91b4d95af",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Balancing timer and activation",
+        "func": "// Balancing Timer and Activation Function\n\n// Retrieve variables from global storage and declare local variables\nvar BmsBalancing = global.get(\"BmsBalancing\"); // Retrieve BmsBalancing from global\nvar BattVoltage = global.get(\"BattVoltage\"); // Retrieve BattVoltage from global\nvar BalanceTime = global.get(\"BalanceTime\"); // Retrieve BalanceTime from global\nvar BalanceNeed = global.get(\"BalanceNeed\"); // Retrieve BalanceNeed from global\nvar LastBalance = global.get(\"LastBalance\"); // Retrieve LastBalance from global\n\n// Check if BalanceNeed is 0 or 1, if BalanceNeed is 0, do nothing\nif (BalanceNeed === 1) {\n    // Debug: Check if BalanceNeed is 1\n //   node.warn(\"BalanceNeed is 1. Checking BattVoltage...\");\n\n    // Check if BattVoltage is lower than 28.4. If BattVoltage is lower, do nothing\n    if (BattVoltage >= 28.35) {\n        // Debug: Check if BattVoltage is lower than 28.4\n //       node.warn(\"BattVoltage is equal or higher than 28.4. Waiting for BalanceTime...\");\n\n        // Calculate the wait time in milliseconds based on BalanceTime (in minutes)\n        var waitTime = BalanceTime * 60 * 1000;\n\n        // Debug: Log the wait time\n    //    node.warn(\"Waiting for \" + waitTime + \" milliseconds...\");\n\n        // Wait for the specified time\n        setTimeout(function () {\n            // Debug: Inside the self-timeout function\n   //         node.warn(\"Inside the self-timeout function...\");\n\n            // Check status of BmsBalancing\n            if (BmsBalancing === 0) {\n                // If BmsBalancing is 0\n                // Debug: BmsBalancing is 0\n   //             node.warn(\"BmsBalancing is 0. Resetting BalanceNeed and updating LastBalance...\");\n\n                // Reset BalanceNeed to 0 and store in global\n                BalanceNeed = 0;\n                global.set(\"BalanceNeed\", BalanceNeed);\n\n                // Take the current timestamp and store it in global as LastBalance\n                LastBalance = Date.now();\n                global.set(\"LastBalance\", LastBalance);\n            }\n        }, waitTime);\n    } else {\n        // Debug: BattVoltage is lower than 28.4\n  //      node.warn(\"BattVoltage is lower than 28.4. Doing nothing...\");\n    }\n} else {\n    // Debug: BalanceNeed is 0\n//    node.warn(\"BalanceNeed is 0. Doing nothing...\");\n}\n\n// Continue with the rest of your flow or return any necessary output\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0ea3ce9248337a7",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 760,
+        "wires": [
+            [
+                "4b0767c91b4d95af"
+            ]
+        ]
+    },
+    {
+        "id": "88e8f33706081c18",
+        "type": "ui_button",
+        "z": "a0153a2235a01066",
+        "name": "Force Balancing",
+        "group": "0489adf761799c8a",
+        "order": 26,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "label": "Force Balancing",
+        "tooltip": "If you want to force a manual balancing cycle",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 420,
+        "wires": [
+            [
+                "b50f842d82ae2cda"
+            ]
+        ]
+    },
+    {
+        "id": "b50f842d82ae2cda",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Force BalanceNeed to 1 on dashboard",
+        "func": "// Retrieve the value from the input node's payload\nvar BalanceNeed = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"BalanceNeed\", BalanceNeed);\nglobal.set(\"ChargeEnabled\", 1);\n\n// Pass the message to the next node (if needed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57267a15450423d0",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "BalanceNeed feedback",
+        "func": "\n// Retrieve ChargeEnabled from the global context\nvar BalanceNeed = global.get(\"BalanceNeed\");\n\n// Output 0 or 1 based on the value of ChargeEnabled\nif (BalanceNeed === 1) {\n    msg.payload = 1; // Output 1 if ChargeEnabled is 1\n} else {\n    msg.payload = 0; // Output 0 for any other value of ChargeEnabled\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 600,
+        "wires": [
+            [
+                "604f46ac7f105e7b"
+            ]
+        ]
+    },
+    {
+        "id": "a5626118fb069010",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "57267a15450423d0"
+            ]
+        ]
+    },
+    {
+        "id": "4b3ef212b4b878d6",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Reset BalanceNeed to 0",
+        "func": "// Retrieve the incoming value (assumed to be in msg.payload)\nvar BalanceNeed = msg.payload;\n\n// Store the incoming value in the global context under the key \"BalanceNeed\"\nglobal.set(\"BalanceNeed\", BalanceNeed);\n\n// Optionally, you can also update the msg.payload with the stored value for further use in the flow\nmsg.payload = BalanceNeed;\n\n// Return the message\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43156233db16164b",
+        "type": "comment",
+        "z": "a0153a2235a01066",
+        "name": "BalanceNeed ON or Reset functions - BalanceNeed reset to OFF is to be implemented in the separate functions.",
+        "info": "",
+        "x": 380,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6c273b31f504695d",
+        "type": "ui_numeric",
+        "z": "a0153a2235a01066",
+        "name": "Automatic Balancing Interval",
+        "label": "Automatic Balancing Interval (Days)",
+        "tooltip": "This value is to tell the system every how many days we have to check if there is a need to balance the cells. When the number of days since the last check have been passed the system will trigger a cycle to charge up to 28.4V and look if the batteries start balancing. If not, the timer is reset. If the cells start balancing it waits untill balancing is finished and resets the timer ",
+        "group": "0489adf761799c8a",
+        "order": 25,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "payload",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "30",
+        "max": "40",
+        "step": "1",
+        "className": "",
+        "x": 560,
+        "y": 80,
+        "wires": [
+            [
+                "c739d2cfefbf69af"
+            ]
+        ]
+    },
+    {
+        "id": "fbe958fe4554df69",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "30",
+        "payloadType": "num",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "6c273b31f504695d"
+            ]
+        ]
+    },
+    {
+        "id": "c739d2cfefbf69af",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Retrieve and store balanceinterval to global",
+        "func": "// Retrieve the numeric set value from the input message\nvar BalanceInterval = msg.payload;\n\n// Store the balanceInterval value in the global context under the name \"BalanceInterval\"\nglobal.set(\"BalanceInterval\", BalanceInterval);\n\n// Debugging: Log the value of BalanceInterval\n// node.warn(\"BalanceInterval Value: \" + BalanceInterval);\n\n// Pass the input message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d7b9b40c4e6ac6a",
+        "type": "ui_numeric",
+        "z": "a0153a2235a01066",
+        "name": "Balancing engaged timer",
+        "label": "Balancing engaged timer",
+        "tooltip": "This value represents the amount of time the balancing logic will wait once the voltage has reached the required level to engage balancing. 28.4V for a 24V system or 14.2V for a 12V system. This is to make certain the cells get the time to start balancing and report to the BMS",
+        "group": "0489adf761799c8a",
+        "order": 27,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "payload",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "30",
+        "step": "5",
+        "className": "",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "be4630d07a791b5e"
+            ]
+        ]
+    },
+    {
+        "id": "5e03a4e9181555db",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "15",
+        "payloadType": "num",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "9d7b9b40c4e6ac6a"
+            ]
+        ]
+    },
+    {
+        "id": "be4630d07a791b5e",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Retrieve and store Balance wait time to global",
+        "func": "// Retrieve the numeric set value from the input message\nvar BalanceTime = msg.payload;\n\n// Store the BalanceTime value in the global context under the name \"BalanceTime\"\nglobal.set(\"BalanceTime\", BalanceTime);\n\n// Debugging: Log the value of BalanceTime\n// node.warn(\"BalanceTime Value: \" + BalanceTime);\n\n// Pass the input message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "99922a40cdd73e61",
+        "type": "ui_slider",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "label": "Balancing end times",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "9d7b9b40c4e6ac6a"
+            ]
+        ]
+    },
+    {
+        "id": "3775f83ceb32f051",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Init Last Balance date at startup to actual and save to global",
+        "func": "// Retrieve the value from the input node's payload (assuming it's a timestamp in milliseconds)\nvar timestamp = msg.payload;\n\n// Create a Date object using the timestamp\nvar date = new Date(timestamp);\n\n// Extract day, month, and year from the Date object\nvar day = date.getDate();\nvar month = date.getMonth() + 1; // Months are zero-based, so add 1\nvar year = date.getFullYear();\n\n// Format the date as \"day/month/year\"\nvar formattedDate = day + '/' + month + '/' + year;\n\n// Set the formatted date as a global variable\nglobal.set(\"LastBalanceDate\", formattedDate);\n\n// Set the timestamp as a global variable\nglobal.set(\"LastBalance\", timestamp);\n\n// Create an object to store both values\nvar globalValues = {\n    LastBalanceDate: formattedDate,\n    LastBalance: timestamp\n};\n\n// Pass the message to the next node (if needed)\nmsg.payload = globalValues; // Update the payload with the object containing both values\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d38bc62018e87077",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "LastBalance set",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "3775f83ceb32f051"
+            ]
+        ]
+    },
+    {
+        "id": "480324551696af99",
+        "type": "ui_button",
+        "z": "a0153a2235a01066",
+        "name": "Reset BalanceNeed to 0 ",
+        "group": "0d42c411c0f4bfb3",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Reset BalanceNeed to 0 ",
+        "tooltip": "If you want to force a manual balancing cycle",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "4b3ef212b4b878d6"
+            ]
+        ]
+    },
+    {
+        "id": "f440a8c26e7265c7",
+        "type": "comment",
+        "z": "a0153a2235a01066",
+        "name": "Initial and dashboard values",
+        "info": "",
+        "x": 120,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "f562dbbad94d9bb4",
+        "type": "comment",
+        "z": "a0153a2235a01066",
+        "name": "Activation of the Balancing feedback from the BMS under specified conditions. Adapt for 12 or 24V bank. Adapt in case of use without BMS feedback modifying the BalanceTime variable as duration that should allow balancing",
+        "info": "In this function, when used with a BMS that reports back when balancing is ongoing (Balancing = 1 when going on and anything else when not) the BalanceTime is only a short timer to allow voltage to rise enough and let the batteries start balancing. \nWhen used in an envirement without BMS reporting this variable, change the BalanceTime to longer period as it will act as a timer that should allow batteries with integrated BMS to balance out. \n\nDefault BalanceTime = 10 to 30minutes \nWithout BMS or integrated BMS set to 30-360 minutes",
+        "x": 730,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "852cf1522d910bec",
+        "type": "victron-input-battery",
+        "z": "a0153a2235a01066",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Balancing",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Cavendish BMS"
+        },
+        "pathObj": {
+            "path": "/Balancing",
+            "type": "enum",
+            "name": "Balancing",
+            "enum": {
+                "0": "Inactive",
+                "1": "Active"
+            }
+        },
+        "initial": "",
+        "name": "BMS balancing feedback",
+        "onlyChanges": false,
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "0e94de5eef899cf5"
+            ]
+        ]
+    },
+    {
+        "id": "923b3265f5a059a7",
+        "type": "ui_led",
+        "z": "a0153a2235a01066",
+        "order": 24,
+        "group": "0489adf761799c8a",
+        "width": 4,
+        "height": 1,
+        "label": "Balancing",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Bms Balancing",
+        "x": 1420,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "0e94de5eef899cf5",
+        "type": "function",
+        "z": "a0153a2235a01066",
+        "name": "Store BMS balancing state to Global",
+        "func": "// Retrieve the current state of BMS when balancing from the payload\nvar BmsBalancing = msg.payload;\n\n// Check if BmsBalancing is null, and if so, set it to 0, otherwise, set it to 1\nif (BmsBalancing === 1) {\n    BmsBalancing = 1;\n} else {\n    BmsBalancing = 0;\n}\n\n// Store the current BMS state (BmsBalancing state) as BmsBalancing in the global context\nglobal.set(\"BmsBalancing\", BmsBalancing);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 820,
+        "wires": [
+            [
+                "923b3265f5a059a7"
+            ]
+        ]
+    },
+    {
+        "id": "513db6ae3ced0bbf",
+        "type": "ui_numeric",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "label": "balancing bms feedback",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": 1,
+        "className": "",
+        "x": 450,
+        "y": 840,
+        "wires": [
+            [
+                "0e94de5eef899cf5"
+            ]
+        ]
+    },
+    {
+        "id": "74d8af590d0e9632",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "4b3ef212b4b878d6"
+            ]
+        ]
+    },
+    {
+        "id": "e3e5ad7a2ce38029",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Dynamic charge limiter",
+        "func": "//- switch mode current limit: CurrentLimitOverride\n//- Shore Max set Current : ShoreMaxCurrent\n//- Generator Max Current : GenMaxCurrent\n//- Vessel input : VesselInput\n//- AC counter fixed consumers: AcFixed\n//- Switch selector shore/gen: ShoreGenSwitch\n//- Dynamic fields selection of shore/gen based on switch state: ActualLimit\n//- Remaining amps for charger to use: AllowedChargeAmps\n\n// Retrieve values from global context\nvar CurrentLimitOverride = global.get(\"CurrentLimitOverride\");\nvar ShoreMaxCurrent = global.get(\"ShoreMaxCurrent\");\nvar GenMaxCurrent = global.get(\"GenMaxCurrent\");\nvar VesselInput = global.get(\"VesselInput\");\nvar AcFixed = global.get(\"AcFixed\");\nvar ShoreGenSwitch = global.get(\"ShoreGenSwitch\");\nvar ActualLimit; \n\n// Check whether \"CurrentLimitOverride\" is on auto (1) or manual (0), if manual, do nothing; if auto, run the sequence\nif (CurrentLimitOverride === 1) {\n    if (ShoreGenSwitch === 11) {\n        // If ShoreGenSwitch is 1, set ActualLimit equal to ShoreMaxCurrent\n        ActualLimit = ShoreMaxCurrent;\n        \n        // Debugging: Log that \"ShoreMaxCurrent\" is selected as the source for ActualLimit\n     //   node.warn(\"Selected source for ActualLimit: ShoreMaxCurrent\");\n    } else if (ShoreGenSwitch === 10) {\n        // If ShoreGenSwitch is 0, set ActualLimit equal to GenMaxCurrent\n        ActualLimit = GenMaxCurrent;\n        \n        // Debugging: Log that \"GenMaxCurrent\" is selected as the source for ActualLimit\n       //  node.warn(\"Selected source for ActualLimit: GenMaxCurrent\");\n    }\n\n    // Calculate the remaining difference, subtract \"AcFixed\" from \"ActualLimit,\" round to the nearest inferior number, and store the result in global context as \"AllowedChargeAmps\"\n    var AllowedChargeAmps = Math.floor(ActualLimit - AcFixed);\n   // node.warn(\"AllowedChargeAmps: \" + AllowedChargeAmps);\n\n    msg.payload = AllowedChargeAmps;\n} else if (CurrentLimitOverride === 0) {\n    // If \"CurrentLimitOverride\" is in manual mode (0), do nothing and pass the message as is\n    // node.warn(\"System is in manual mode\");\n    msg.payload = null;\n}\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1240,
+        "wires": [
+            [
+                "14ebf5cae2cf3ff4",
+                "5df891f0e9086713"
+            ]
+        ]
+    },
+    {
+        "id": "c65e519ce9d5b2be",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 1240,
+        "wires": [
+            [
+                "e3e5ad7a2ce38029"
+            ]
+        ]
+    },
+    {
+        "id": "5df891f0e9086713",
+        "type": "victron-output-vebus",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.vebus/276",
+        "path": "/Ac/ActiveIn/CurrentLimit",
+        "serviceObj": {
+            "service": "com.victronenergy.vebus/276",
+            "name": "MultiPlus 24/3000/70-50"
+        },
+        "pathObj": {
+            "path": "/Ac/ActiveIn/CurrentLimit",
+            "type": "float",
+            "name": "Active input current limit (A)",
+            "writable": true
+        },
+        "name": "Current limit Multi",
+        "onlyChanges": false,
+        "x": 1250,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "5434e8e795736a3b",
+        "type": "comment",
+        "z": "88528a05a79df186",
+        "name": "Function to set Multi/Quattro allowed max charge based on incoming Amps and consumption of devices not connected to Multi/Quattro output",
+        "info": "",
+        "x": 470,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "38abfc07b2bc2ce4",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Vessel input W",
+        "group": "aed689e284f65765",
+        "order": 5,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Vessel input W",
+        "label": "W",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "15000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "7000",
+        "seg2": "12000",
+        "diff": false,
+        "className": "",
+        "x": 1420,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "300e3e5c3e1d9298",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Direct Consumers W",
+        "group": "aed689e284f65765",
+        "order": 8,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Direct Consumers W",
+        "label": "W",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "15000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "7000",
+        "seg2": "12000",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "30f38fa7e916d7c1",
+        "type": "victron-input-gridmeter",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.grid/30",
+        "path": "/Ac/L1/Power",
+        "serviceObj": {
+            "service": "com.victronenergy.grid/30",
+            "name": "Vessel Main"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Power",
+            "type": "float",
+            "name": "L1 Power (W)"
+        },
+        "name": "Vessel input W",
+        "onlyChanges": false,
+        "roundValues": "2",
+        "x": 100,
+        "y": 860,
+        "wires": [
+            [
+                "38abfc07b2bc2ce4"
+            ]
+        ]
+    },
+    {
+        "id": "f5b1d0644887c4a0",
+        "type": "victron-input-acload",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.acload/30",
+        "path": "/Ac/L1/Power",
+        "serviceObj": {
+            "service": "com.victronenergy.acload/30",
+            "name": "Fixed consumers"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Power",
+            "type": "float",
+            "name": "L1 Power (W)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 150,
+        "y": 980,
+        "wires": [
+            [
+                "300e3e5c3e1d9298"
+            ]
+        ]
+    },
+    {
+        "id": "3f98c875aef12543",
+        "type": "victron-input-gridmeter",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.grid/30",
+        "path": "/Ac/L1/Voltage",
+        "serviceObj": {
+            "service": "com.victronenergy.grid/30",
+            "name": "Vessel Main"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Voltage",
+            "type": "float",
+            "name": "L1 Voltage (V)"
+        },
+        "name": "Vessel input V",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 90,
+        "y": 920,
+        "wires": [
+            [
+                "3e8d3ed755604d4d"
+            ]
+        ]
+    },
+    {
+        "id": "3e8d3ed755604d4d",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Vessel input V",
+        "group": "aed689e284f65765",
+        "order": 7,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Vessel input V",
+        "label": "A",
+        "format": "{{value}}",
+        "min": "180",
+        "max": "250",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "200",
+        "seg2": "240",
+        "diff": false,
+        "className": "",
+        "x": 1420,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "2dca1860a24a4811",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Direct Consumers V",
+        "group": "aed689e284f65765",
+        "order": 10,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Direct Consumers V",
+        "label": "A",
+        "format": "{{value}}",
+        "min": "180",
+        "max": "250",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "200",
+        "seg2": "240",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "d525bf9b911f6172",
+        "type": "victron-input-acload",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.acload/30",
+        "path": "/Ac/L1/Voltage",
+        "serviceObj": {
+            "service": "com.victronenergy.acload/30",
+            "name": "Fixed consumers"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Voltage",
+            "type": "float",
+            "name": "L1 Voltage (V AC)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 160,
+        "y": 800,
+        "wires": [
+            [
+                "2dca1860a24a4811"
+            ]
+        ]
+    },
+    {
+        "id": "cc6a3907442db878",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Vessel input A",
+        "group": "aed689e284f65765",
+        "order": 6,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Vessel input A",
+        "label": "A",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "32",
+        "seg2": "45",
+        "diff": false,
+        "className": "",
+        "x": 1420,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "806cce656182b735",
+        "type": "victron-input-gridmeter",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.grid/30",
+        "path": "/Ac/L1/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.grid/30",
+            "name": "Vessel Input"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Current",
+            "type": "float",
+            "name": "L1 Current (A)"
+        },
+        "name": "Vessel input A",
+        "onlyChanges": false,
+        "roundValues": "2",
+        "x": 90,
+        "y": 480,
+        "wires": [
+            [
+                "bb24209270e63faa"
+            ]
+        ]
+    },
+    {
+        "id": "bb24209270e63faa",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Store Vessel input to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar vesselInputValue = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"VesselInput\", vesselInputValue);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 480,
+        "wires": [
+            [
+                "cc6a3907442db878"
+            ]
+        ]
+    },
+    {
+        "id": "cccb400819d48e7d",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Retrieve MultiState from global",
+        "func": "// Retrieve MultiState from the global context\nvar MultiState = global.get(\"MultiState\");\n\n// Output MultiState as a payload\nmsg.payload = MultiState;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 600,
+        "wires": [
+            [
+                "59e3431312145583"
+            ]
+        ]
+    },
+    {
+        "id": "0ced9aac310ca4a0",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Direct Consumers A",
+        "group": "aed689e284f65765",
+        "order": 9,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Direct Consumers A",
+        "label": "A",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "32",
+        "seg2": "45",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f2d45eb5c48f9b5e",
+        "type": "victron-input-acload",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.acload/30",
+        "path": "/Ac/L1/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.acload/30",
+            "name": "Fixed consumers"
+        },
+        "pathObj": {
+            "path": "/Ac/L1/Current",
+            "type": "float",
+            "name": "L1 Current (A)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "588e37c4ea6ffad9"
+            ]
+        ]
+    },
+    {
+        "id": "588e37c4ea6ffad9",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Store Fixed consumers to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar AcFixed = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"AcFixed\", AcFixed);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 540,
+        "wires": [
+            [
+                "0ced9aac310ca4a0"
+            ]
+        ]
+    },
+    {
+        "id": "59e3431312145583",
+        "type": "ui_template",
+        "z": "88528a05a79df186",
+        "group": "aed689e284f65765",
+        "name": "",
+        "order": 18,
+        "width": 9,
+        "height": 2,
+        "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n  }\n\n  .label {\n    font-weight: bold;\n    margin: 0;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 3 ? '#7d94d9' : 'white'}};\">\n        <p class=\"label\">On</p>\n    </div>\n<div class=\"rectangle\" style=\"background-color: {{msg.payload === 2 ? '#7d94d9' : 'white'}};\">\n        <p class=\"label\">Inverter</p>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 1 ? '#7d94d9' : 'white'}};\">\n        <p class=\"label\">Charger</p>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 4 ? '#7d94d9' : 'white'}};\">\n        <p class=\"label\">Off</p>\n    </div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1400,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a255f926f6ad239d",
+        "type": "victron-input-digitalinput",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.digitalinput/1",
+        "path": "/State",
+        "serviceObj": {
+            "service": "com.victronenergy.digitalinput/1",
+            "name": "Generator"
+        },
+        "pathObj": {
+            "path": "/State",
+            "type": "enum",
+            "name": "Digital input state",
+            "enum": {
+                "0": "low",
+                "1": "high",
+                "2": "off",
+                "3": "on",
+                "4": "no",
+                "5": "yes",
+                "6": "open",
+                "7": "closed",
+                "8": "ok",
+                "9": "alarm",
+                "10": "running",
+                "11": "stopped"
+            }
+        },
+        "initial": "",
+        "name": "Shore/Gen Switch state",
+        "onlyChanges": false,
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "a8068c9812514ebb",
+                "c3798d79a976b835"
+            ]
+        ]
+    },
+    {
+        "id": "50bab84b61cc7a40",
+        "type": "ui_template",
+        "z": "88528a05a79df186",
+        "group": "aed689e284f65765",
+        "name": "",
+        "order": 19,
+        "width": 9,
+        "height": 2,
+        "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n  }\n\n  .label {\n    font-weight: bold;\n    margin: 0;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 11 ? '#7d94d9' : 'white'}};\">\n        <p class=\"label\">Shore</p>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 10 ? '#e17a7a' : 'white'}};\">\n        <p class=\"label\">Generator</p>\n    </div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1400,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8068c9812514ebb",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Store Shore/Gen Switch to Global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar ShoreGenSwitch = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"ShoreGenSwitch\", ShoreGenSwitch);\n\n// Pass the message to the next node (if needed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 420,
+        "wires": [
+            [
+                "50bab84b61cc7a40"
+            ]
+        ]
+    },
+    {
+        "id": "8467e940db14fc32",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "16",
+        "payloadType": "num",
+        "x": 510,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7df225bc26353e28",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 510,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c81fd0ff75de92b",
+        "type": "ui_multistate_switch",
+        "z": "88528a05a79df186",
+        "name": "shore gen switch",
+        "group": "0d42c411c0f4bfb3",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "switch",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": false,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "shore",
+                "value": "11",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Gen",
+                "value": "10",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 530,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "691d93c9631a5ec6",
+        "type": "victron-input-custom",
+        "z": "88528a05a79df186",
+        "service": "com.victronenergy.vebus/276",
+        "path": "/Dc/0/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.vebus/276",
+            "name": "MultiPlus 24/3000/70-50 (276)"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Current",
+            "name": "/Dc/0/Current",
+            "type": "number"
+        },
+        "name": "Multiplus DC out",
+        "onlyChanges": false,
+        "roundValues": "2",
+        "x": 100,
+        "y": 1040,
+        "wires": [
+            [
+                "b9d7e6b4c7162f1c"
+            ]
+        ]
+    },
+    {
+        "id": "b9d7e6b4c7162f1c",
+        "type": "ui_gauge",
+        "z": "88528a05a79df186",
+        "name": "Multiplus Output DC",
+        "group": "aed689e284f65765",
+        "order": 12,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Multiplus Output DC",
+        "label": "A",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "140",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "165d309cb8541ea8",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Current Limit shore to global",
+        "func": "// Retrieve the value of the slider from the input message\nvar sliderValue = msg.payload;\n\n\n// Set the slider value as a global variable\nglobal.set(\"ShoreMaxCurrent\", sliderValue);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1fa1c9beb43e9aeb",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.2",
+        "topic": "",
+        "payload": "32",
+        "payloadType": "num",
+        "x": 70,
+        "y": 160,
+        "wires": [
+            [
+                "f4ab5da8d5fec837"
+            ]
+        ]
+    },
+    {
+        "id": "f4ab5da8d5fec837",
+        "type": "ui_numeric",
+        "z": "88528a05a79df186",
+        "name": "Shore Max Current",
+        "label": "Shore Max Current",
+        "tooltip": "The value represents the maximum the system is allowed to draw when on shore power",
+        "group": "aed689e284f65765",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "165d309cb8541ea8"
+            ]
+        ]
+    },
+    {
+        "id": "875981f4aa9d9c26",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Current Limit Gen to global",
+        "func": "// Retrieve the value of the slider from the input message\nvar sliderValue = msg.payload;\n\n\n// Set the slider value as a global variable\nglobal.set(\"GenMaxCurrent\", sliderValue);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "229038475b32092d",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.2",
+        "topic": "",
+        "payload": "29",
+        "payloadType": "num",
+        "x": 70,
+        "y": 220,
+        "wires": [
+            [
+                "a80f48bf75a3b774"
+            ]
+        ]
+    },
+    {
+        "id": "a80f48bf75a3b774",
+        "type": "ui_numeric",
+        "z": "88528a05a79df186",
+        "name": "Gen Max Current",
+        "label": "Gen Max Current",
+        "tooltip": "The value represents the maximum the system is allowed to draw when on shore power",
+        "group": "aed689e284f65765",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": 1,
+        "className": "",
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "875981f4aa9d9c26"
+            ]
+        ]
+    },
+    {
+        "id": "1c46bb1c91c7edb5",
+        "type": "ui_multistate_switch",
+        "z": "88528a05a79df186",
+        "name": "Limit current taken from AC input source",
+        "group": "aed689e284f65765",
+        "order": 1,
+        "width": 9,
+        "height": 1,
+        "label": "Current Limit Managment",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": true,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Automatic",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Manual",
+                "value": "0",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "18488c0ffdcc04ec"
+            ]
+        ]
+    },
+    {
+        "id": "18488c0ffdcc04ec",
+        "type": "function",
+        "z": "88528a05a79df186",
+        "name": "Current Limit managment to global",
+        "func": "// Retrieve the value of the slider from the input message\nvar switchValue = msg.payload;\n\n\n// Set the slider value as a global variable\nglobal.set(\"CurrentLimitOverride\", switchValue);\n\n// Pass the message to the next node\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2be4f34f30d1b7d7",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "Default Dynamic current limit",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.2",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "1c46bb1c91c7edb5"
+            ]
+        ]
+    },
+    {
+        "id": "7c7432472a7124bb",
+        "type": "comment",
+        "z": "88528a05a79df186",
+        "name": "User interactive values",
+        "info": "",
+        "x": 100,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "130ceee5e67ea979",
+        "type": "comment",
+        "z": "88528a05a79df186",
+        "name": "Dashboard and variables ",
+        "info": "",
+        "x": 110,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b45721f388914b40",
+        "type": "comment",
+        "z": "88528a05a79df186",
+        "name": "Dashboard only nodes",
+        "info": "",
+        "x": 100,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5da6952dbdaa4030",
+        "type": "inject",
+        "z": "88528a05a79df186",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 530,
+        "y": 600,
+        "wires": [
+            [
+                "cccb400819d48e7d"
+            ]
+        ]
+    },
+    {
+        "id": "c3798d79a976b835",
+        "type": "debug",
+        "z": "88528a05a79df186",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "14ebf5cae2cf3ff4",
+        "type": "debug",
+        "z": "88528a05a79df186",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "d6b84b646e7a9eb2",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "MultiChargeEnabled feedback",
+        "func": "\n// Retrieve ChargeEnabled from the global context\nvar MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\n// Output 0 or 1 based on the value of MultiChargeEnabled\nif (MultiChargeEnabled === 1) {\n    msg.payload = 1; // Output 1 if ChargeEnabled is 1\n} else {\n    msg.payload = 0; // Output 0 for any other value of MultiChargeEnabled\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 920,
+        "wires": [
+            [
+                "6baec025b7409eda"
+            ]
+        ]
+    },
+    {
+        "id": "6baec025b7409eda",
+        "type": "ui_led",
+        "z": "d2855c6ff5fe1d8c",
+        "order": 15,
+        "group": "0489adf761799c8a",
+        "width": 3,
+        "height": 1,
+        "label": "Charging Enabled",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Multiplus Charging Enabled",
+        "x": 1480,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "87b2240eaed6c78a",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "d6b84b646e7a9eb2"
+            ]
+        ]
+    },
+    {
+        "id": "a5e415478fddb578",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Reset MultiChargeEnabled based on SOC",
+        "func": "// Retrieve values from global context\nvar MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\nvar BattSoc = global.get(\"BattSoc\");\nvar MultiRestartSoc = global.get(\"MultiRestartSoc\");\n\n// Check if MultiChargeEnabled is 0\nif (MultiChargeEnabled === 0) {\n    // Compare BattSoc to MultiRestartSOC\n    if (BattSoc <= MultiRestartSoc) {\n        // Set MultiChargeEnabled to 1\n        global.set(\"MultiChargeEnabled\", 1);\n    }\n}\n\n// node.warn(\"MultiChargeEnabled: \" + MultiChargeEnabled);\n// node.warn(\"RestartSOC: \" + RestartSOC);\n// node.warn(\"BattSoc: \" + BattSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f980f9d786269cb1",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 980,
+        "wires": [
+            [
+                "a5e415478fddb578"
+            ]
+        ]
+    },
+    {
+        "id": "698e518d68d73c8a",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Charge Cycle Enabled",
+        "info": "",
+        "x": 120,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "749e6e7cc05982e0",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Multiplus mgmt to global",
+        "func": "// Extract the value of the multistate switch from the input message\nvar switchValue = msg.payload;\n\n// Set the switch value as a global variable\nglobal.set(\"MultiSOCmgmt\", switchValue);\n\n// Return a message for reference or further processing (optional)\nmsg.payload = \"MultiSOCmgmt: \" + switchValue;\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a28a777b8e23ea1",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Inject Cycle mgmt Auto",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "1987d79b4b49ed81"
+            ]
+        ]
+    },
+    {
+        "id": "1987d79b4b49ed81",
+        "type": "ui_multistate_switch",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Multiplus Management",
+        "group": "0489adf761799c8a",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "label": "Multiplus Management",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": true,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Automatic",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Manual",
+                "value": "0",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "749e6e7cc05982e0"
+            ]
+        ]
+    },
+    {
+        "id": "d957038887770b9a",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "User interactive Local Values",
+        "info": "Auto = 1\nManual = 0",
+        "x": 140,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c8ce07bb531f28cb",
+        "type": "victron-output-vebus",
+        "z": "d2855c6ff5fe1d8c",
+        "service": "com.victronenergy.vebus/276",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.vebus/276",
+            "name": "MultiPlus 24/3000/70-50"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Switch Position",
+            "remarks": "<p>Note that <tt>/ModeIsAdjustable</tt> needs to be set to 1.</p> ",
+            "enum": {
+                "1": "Charger Only",
+                "2": "Inverter Only",
+                "3": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1540,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "deb41ea4feccb814",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "SOC charging controll multiplus",
+        "func": "// Retrieve the values from the global context\nvar MultiSOCmgmt = global.get(\"MultiSOCmgmt\");\nvar MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\nvar MaxSoc = global.get(\"MaxSoc\");\nvar BattSoc = global.get(\"BattSoc\");\nvar MultiState = global.get(\"MultiState\");\nvar BalanceNeed = global.get(\"BalanceNeed\");\n\n\n// Define a temporary MultiState variable for direct output\nvar tempMultiState = MultiState;\n\n// Check if MultiSOCmgmt is 0 or 1.\n// If MultiSOCmgmt is 0, do nothing and stop the function, returning null \nif (MultiSOCmgmt === 0) {\n    return null;\n} else if (MultiSOCmgmt === 1) {\n    // If MultiSOCmgmt is 1, continue processing\n\n    // Check for the value of tempMultiState. If tempMultiState is 1, output payload 1.\n    if (tempMultiState === 1) {\n        msg.payload = 1;\n    } else if (tempMultiState === 4) {\n        // If tempMultiState is 4, output payload 4.\n        msg.payload = 4;\n    } else if (tempMultiState === 2 || tempMultiState === 3) {\n        // Check if tempMultiState is 2 or 3\n\n        // Check if MultiChargeEnabled is 0 or 1\n        if (MultiChargeEnabled === 0) {\n            // If MultiChargeEnabled is 0, output payload as 2\n            msg.payload = 2;\n        } else if (MultiChargeEnabled === 1) {\n            // If MultiChargeEnabled is 1, continue processing\n\n            // Check if BalanceNeed is 0 or 1\n            if (BalanceNeed === 0) {\n                if (BattSoc < MaxSoc) {\n                    // Output 3 as payload as long as BattSoc is smaller than MaxSoc\n                    msg.payload = 3;\n                } else if (BattSoc >= MaxSoc) {\n                    // Output 2 as payload, and update ChargeEnabled to 0\n                    msg.payload = 2;\n                    global.set(\"MultiChargeEnabled\", 0);\n                }\n            } else if (BalanceNeed === 1) {\n                // If BalanceNeed is 1, continue charging as long as balance need is not 0\n                msg.payload = 3;\n            }\n        }\n    }\n}\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 1380,
+        "wires": [
+            [
+                "c8ce07bb531f28cb",
+                "8eeb359c7bf0d5dc"
+            ]
+        ]
+    },
+    {
+        "id": "4de1a353c38c659a",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 90,
+        "y": 1380,
+        "wires": [
+            [
+                "deb41ea4feccb814"
+            ]
+        ]
+    },
+    {
+        "id": "2a69e133e2c7e75c",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Function to manage the sources based on conditions like battery SOC and balance need. Manual or Automated is to be set on the dashboard",
+        "info": "",
+        "x": 490,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "fc493e182771f25a",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Retrieve MultiState from global",
+        "func": "// Retrieve MultiState from the global context\nvar MultiState = global.get(\"MultiState\");\n\n// Output MultiState as a payload\nmsg.payload = MultiState;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f851b19dfaab9739",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Dashboard feedback nodes",
+        "info": "",
+        "x": 140,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "5870ed0a978fa7e4",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Function Debug",
+        "info": "",
+        "x": 100,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "db92701a3168e85b",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Debug variables",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1780,
+        "wires": [
+            [
+                "c1427c9e00958fbe"
+            ]
+        ]
+    },
+    {
+        "id": "c1427c9e00958fbe",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "variables export",
+        "func": "// Retrieve the variables from the global context\nvar MultiSOCmgmt = global.get(\"MultiSOCmgmt\");\nvar MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\nvar MaxSoc = global.get(\"MaxSoc\");\nvar BattSoc = global.get(\"BattSoc\");\nvar MultiState = global.get(\"MultiState\");\nvar BalanceNeed = global.get(\"BalanceNeed\");\nvar ShoreGenSwitch = global.get(\"ShoreGenSwitch\");\nvar MultiRestartSoc = global.get(\"MultiRestartSoc\");\nvar CycleMgmt = global.get(\"CycleMgmt\");\n\n\n// Create an object to hold the variables\nvar variables = {\n    MultiSOCmgmt: MultiSOCmgmt,\n    MultiChargeEnabled: MultiChargeEnabled,\n    MaxSoc: MaxSoc,\n    BattSoc: BattSoc,\n    MultiState: MultiState,\n    BalanceNeed: BalanceNeed,\n    ShoreGenSwitch: ShoreGenSwitch,\n    CycleMgmt: CycleMgmt,\n    MultiRestartSoc: MultiRestartSoc\n};\n\n// Output the variables as a payload\nmsg.payload = variables;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1780,
+        "wires": [
+            [
+                "41855fb55b1cc5ad"
+            ]
+        ]
+    },
+    {
+        "id": "41855fb55b1cc5ad",
+        "type": "debug",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "e9de07d0bdf8d451",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 1140,
+        "wires": [
+            [
+                "fc493e182771f25a"
+            ]
+        ]
+    },
+    {
+        "id": "8eeb359c7bf0d5dc",
+        "type": "debug",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "24f28037501616c0",
+        "type": "comment",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Dashboard nodes",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ce86be16270c0d94",
+        "type": "victron-input-vebus",
+        "z": "d2855c6ff5fe1d8c",
+        "service": "com.victronenergy.vebus/276",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.vebus/276",
+            "name": "MultiPlus 24/3000/70-50"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Switch Position",
+            "enum": {
+                "1": "Charger Only",
+                "2": "Inverter Only",
+                "3": "On",
+                "4": "Off"
+            }
+        },
+        "initial": "",
+        "name": "Multiplus state",
+        "onlyChanges": false,
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "6f96df36657d7d4d"
+            ]
+        ]
+    },
+    {
+        "id": "6f96df36657d7d4d",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Store multi state to global",
+        "func": "// Retrieve the current charger state from the payload\nvar MultiState = msg.payload;\n\n// Store the current charger state (Multiplus state) as MultiState in the global context\nglobal.set(\"MultiState\", MultiState);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b513b4bb3d9e4d98",
+        "type": "ui_numeric",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "label": "Multiplus function return state",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "4",
+        "step": 1,
+        "className": "",
+        "x": 1180,
+        "y": 160,
+        "wires": [
+            [
+                "6f96df36657d7d4d"
+            ]
+        ]
+    },
+    {
+        "id": "e5277738d6d2b828",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Set Charging enabled",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 2180,
+        "wires": [
+            [
+                "e096b110d010bf83"
+            ]
+        ]
+    },
+    {
+        "id": "e096b110d010bf83",
+        "type": "ui_button",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "group": "0489adf761799c8a",
+        "order": 20,
+        "width": 9,
+        "height": 2,
+        "passthru": true,
+        "label": "Reset Charging Enabled",
+        "tooltip": "If, for any reason you would want to interrupt the cycle between maximum state of charge and restart state of charge to force the system into charging again (while on shore power) ",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 750,
+        "y": 2180,
+        "wires": [
+            [
+                "77c7fba52bfcbb21",
+                "a6a59e825a4d6692",
+                "47a8a47fc48daa1d"
+            ]
+        ]
+    },
+    {
+        "id": "77c7fba52bfcbb21",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Multi ChargeEnabled to Global",
+        "func": "// Retrieve the value from the input node's payload\nvar MultiChargeEnabled = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"MultiChargeEnabled\", MultiChargeEnabled);\n\n// Pass the message to the next node (if needed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 2180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9916b1ee0c1a1e61",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Sailing Restart SOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "SailRestartSoc",
+        "payloadType": "global",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "38dadb3525bc4d5b"
+            ]
+        ]
+    },
+    {
+        "id": "38dadb3525bc4d5b",
+        "type": "ui_numeric",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Sailing Restart SOC",
+        "label": "Sailing Restart SOC",
+        "tooltip": "This value represents the lower state of charge at wich we will start charging again. This value is only used when connected on shore power to have the batteries perform small cycles and not remain fully charged as this results in damage to the cells. ",
+        "group": "0489adf761799c8a",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "30",
+        "max": "90",
+        "step": "5",
+        "className": "",
+        "x": 740,
+        "y": 580,
+        "wires": [
+            [
+                "6a70f3df2df0a954"
+            ]
+        ]
+    },
+    {
+        "id": "6a70f3df2df0a954",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Store Cycle Restart SOC to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar SailRestartSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"SailRestartSoc\", SailRestartSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1482d67ad29cd7ad",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Set to 0 for debug",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 130,
+        "y": 2240,
+        "wires": [
+            [
+                "e096b110d010bf83"
+            ]
+        ]
+    },
+    {
+        "id": "5977a08cd7ea3ac7",
+        "type": "ui_numeric",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Storage Max SOC",
+        "label": "Storage Max SOC",
+        "tooltip": "This value sets the maximum threshold of the battery charge is %. Once reached, charging sources will stop.",
+        "group": "0489adf761799c8a",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "payload",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "40",
+        "max": "80",
+        "step": "5",
+        "className": "",
+        "x": 730,
+        "y": 660,
+        "wires": [
+            [
+                "3458d108c1b09869"
+            ]
+        ]
+    },
+    {
+        "id": "3458d108c1b09869",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Storage MaxSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar StorMaxSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"StorMaxSoc\", StorMaxSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46414d1d40677bbf",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "StorMaxSoc",
+        "payloadType": "global",
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "5977a08cd7ea3ac7"
+            ]
+        ]
+    },
+    {
+        "id": "67fa06e3caa3daf9",
+        "type": "ui_multistate_switch",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Cycle Management setting",
+        "group": "0489adf761799c8a",
+        "order": 1,
+        "width": 9,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Marina",
+                "value": "2",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "Sailing",
+                "value": "3",
+                "valueType": "num",
+                "color": "#ff6666"
+            }
+        ],
+        "topic": "",
+        "x": 760,
+        "y": 420,
+        "wires": [
+            [
+                "f8f453868f720593",
+                "8a924183112b6e00"
+            ]
+        ]
+    },
+    {
+        "id": "7a2edd39b1cd2de7",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 90,
+        "y": 420,
+        "wires": [
+            [
+                "67fa06e3caa3daf9"
+            ]
+        ]
+    },
+    {
+        "id": "f8f453868f720593",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "CycleMgmt to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar CycleMgmt = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"CycleMgmt\", CycleMgmt);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79a93b0453fdb9f2",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Storage Restart SOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "StorRestartSoc",
+        "payloadType": "global",
+        "x": 140,
+        "y": 540,
+        "wires": [
+            [
+                "8eec334b7bd645ab"
+            ]
+        ]
+    },
+    {
+        "id": "8eec334b7bd645ab",
+        "type": "ui_numeric",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Storage Restart SOC",
+        "label": "Storage Restart SOC",
+        "tooltip": "This value represents the lower state of charge at wich we will start charging again. This value is only used when connected on shore power to have the batteries perform small cycles and not remain fully charged as this results in damage to the cells. ",
+        "group": "0489adf761799c8a",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "30",
+        "max": "55",
+        "step": "5",
+        "className": "",
+        "x": 740,
+        "y": 540,
+        "wires": [
+            [
+                "ff3970072b4f91e2"
+            ]
+        ]
+    },
+    {
+        "id": "fb8ce8ac918c8ba7",
+        "type": "ui_numeric",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Sailing Max SOC",
+        "label": "Sailing Max SOC",
+        "tooltip": "This value sets the maximum threshold of the battery charge is %. Once reached, charging sources will stop.",
+        "group": "0489adf761799c8a",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "payload",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "80",
+        "max": "99",
+        "step": "1",
+        "className": "",
+        "x": 730,
+        "y": 700,
+        "wires": [
+            [
+                "e1a399ca713beca9"
+            ]
+        ]
+    },
+    {
+        "id": "acb0b74e3193428e",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Sailing Max SOC",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "SailMaxSoc",
+        "payloadType": "global",
+        "x": 130,
+        "y": 700,
+        "wires": [
+            [
+                "fb8ce8ac918c8ba7"
+            ]
+        ]
+    },
+    {
+        "id": "e1a399ca713beca9",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Sail MaxSoc to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar SailMaxSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"SailMaxSoc\", SailMaxSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff3970072b4f91e2",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Store Cycle Restart SOC to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar StorRestartSoc = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"StorRestartSoc\", StorRestartSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6713940b2ce12ea8",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Store Cycle Restart SOC to global",
+        "func": "// retrieve the state of CycleMgmt from global storage \n// retrieve the values from StorRestartSoc and SailRestartSoc from global storage\n// If CycleMgmt is 1 store null as MultiRestartSoc, if CycleMgmt is 2 store StorRestartSoc as MultiRestartSoc, if CycleMgmt is 3 store SailRestartSoc as MultiRestartSoc\n\n\n\n// retrieve the state of CycleMgmt from global storage\nvar CycleMgmt = global.get(\"CycleMgmt\");\n\n// retrieve the values from StorRestartSoc and SailRestartSoc from global storage\nvar StorRestartSoc = global.get(\"StorRestartSoc\");\nvar SailRestartSoc = global.get(\"SailRestartSoc\");\n\n// Declare MultiRestartSoc variable\nvar MultiRestartSoc;\n\n// Debug each retrieved value\n// node.warn(\"CycleMgmt: \" + CycleMgmt);\n// node.warn(\"StorRestartSoc: \" + StorRestartSoc);\n// node.warn(\"SailRestartSoc: \" + SailRestartSoc);\n// If CycleMgmt is 1, store null as MultiRestartSoc\nif (CycleMgmt === 1) {\n    MultiRestartSoc = null;\n//    node.warn(\"Value to be stored in MultiRestartSoc: null\");\n} \n// If CycleMgmt is 2, store StorRestartSoc as MultiRestartSoc\nelse if (CycleMgmt === 2) {\n    MultiRestartSoc = StorRestartSoc;\n//    node.warn(\"Value to be stored in MultiRestartSoc: \" + StorRestartSoc);\n} \n// If CycleMgmt is 3, store SailRestartSoc as MultiRestartSoc\nelse if (CycleMgmt === 3) {\n    MultiRestartSoc = SailRestartSoc;\n //   node.warn(\"Value to be stored in MultiRestartSoc: \" + SailRestartSoc);\n}\n\n// Store MultiRestartSoc in the global context\nglobal.set(\"MultiRestartSoc\", MultiRestartSoc);\n// node.warn(\"Value to be stored in MultiRestartSoc: \" + MultiRestartSoc);\n// Pass the message to the next node\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 2000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a51f92c7f1867893",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Store MaxSoc to global",
+        "func": "// retrieve the state of CycleMgmt from global storage \n// retrieve the values from StorMaxSoc and SailMaxSoc from global storage\n// If CycleMgmt is 1 store null as MaxSoc, if CycleMgmt is 2 store StorMaxSoc as MaxSoc, if CycleMgmt is 3 store SailMaxSoc as MaxSoc\n\n\n// Retrieve the state of CycleMgmt from global storage\nvar CycleMgmt = global.get(\"CycleMgmt\");\n\n// Retrieve the values from StorMaxSoc and SailMaxSoc from global storage\nvar StorMaxSoc = global.get(\"StorMaxSoc\");\nvar SailMaxSoc = global.get(\"SailMaxSoc\");\n\n// Debug each retrieved value\n// node.warn(\"CycleMgmt: \" + CycleMgmt);\n// node.warn(\"StorMaxSoc: \" + StorMaxSoc);\n// node.warn(\"SailMaxSoc: \" + SailMaxSoc);\n\nvar MaxSoc = null; // Default value as null\n\n// If CycleMgmt is 1, store null as MaxSoc\nif (CycleMgmt === 1) {\n    MaxSoc = null;\n //   node.warn(\"Value to be stored in MaxSoc: null\");\n} \n// If CycleMgmt is 2, store StorMaxSoc as MaxSoc\nelse if (CycleMgmt === 2) {\n    MaxSoc = StorMaxSoc;\n//    node.warn(\"Value to be stored in MaxSoc: \" + StorMaxSoc);\n} \n// If CycleMgmt is 3, store SailMaxSoc as MaxSoc\nelse if (CycleMgmt === 3) {\n    MaxSoc = SailMaxSoc;\n//    node.warn(\"Value to be stored in MaxSoc: \" + SailMaxSoc);\n}\n\n// Store MaxSoc in the global context\nglobal.set(\"MaxSoc\", MaxSoc);\n// node.warn(\"Value to be stored in MaxSoc: \" + MaxSoc);\n// Pass the message to the next node \nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fd954721924231b",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 730,
+        "y": 2000,
+        "wires": [
+            [
+                "6713940b2ce12ea8"
+            ]
+        ]
+    },
+    {
+        "id": "1abe231616e3aa60",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 730,
+        "y": 2060,
+        "wires": [
+            [
+                "a51f92c7f1867893"
+            ]
+        ]
+    },
+    {
+        "id": "8a924183112b6e00",
+        "type": "debug",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a6a59e825a4d6692",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "ChargeEnabledSol to Global",
+        "func": "// Retrieve the value from the input node's payload\nvar ChargeEnabledSol = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"ChargeEnabledSol\", ChargeEnabledSol);\n\n// Pass the message to the next node (if needed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 2220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47a8a47fc48daa1d",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Alternator ChargeEnabled to Global",
+        "func": "// Retrieve the value from the input node's payload\nvar AltChargeEnabled = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"AltChargeEnabled\", AltChargeEnabled);\n\n// Pass the message to the next node (if needed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 2260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9990c108185fa91",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/290",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/290",
+            "name": "Solar Front portboard"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "f4eac957b349a9cf",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/293",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/293",
+            "name": "Solar Rear port side"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "4649d1d0ac98299d",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/288",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/288",
+            "name": "Solar Rear port middle"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7aeaa83f6eb21266",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/291",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/291",
+            "name": "Solar Front starboard"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7812c388a7c4a89c",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/289",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/289",
+            "name": "Solar Rear star side"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "0a5829d3b7be0230",
+        "type": "victron-output-solarcharger",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.solarcharger/292",
+        "path": "/Mode",
+        "serviceObj": {
+            "service": "com.victronenergy.solarcharger/292",
+            "name": "Solar Rear star middle"
+        },
+        "pathObj": {
+            "path": "/Mode",
+            "type": "enum",
+            "name": "Charger on/off",
+            "enum": {
+                "1": "On",
+                "4": "Off"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 1310,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "e17bceca8d9aec8f",
+        "type": "function",
+        "z": "81c7a8a38f0557f0",
+        "name": "SolarMgmt",
+        "func": "// Retrieve the values from the global context\nvar SolarMgmt = global.get(\"SolarMgmt\");\nvar ChargeEnabledSol = global.get(\"ChargeEnabledSol\");\nvar SailMaxSoc = global.get(\"SailMaxSoc\");\nvar BattSoc = global.get(\"BattSoc\");\nvar BalanceNeed = global.get(\"BalanceNeed\");\n\n// Debugging: Log the retrieved values\n// node.warn(\"SolarMgmt: \" + SolarMgmt);\n// node.warn(\"ChargeEnabledSol: \" + ChargeEnabledSol);\n// node.warn(\"MaxSoc: \" + MaxSoc);\n// node.warn(\"BattSoc: \" + BattSoc);\n// node.warn(\"BalanceNeed: \" + BalanceNeed);\n\nvar SolarState;\n\n// Check if SolarMgmt is 0, 1, or 10.\nif (SolarMgmt === 4) {\n    // If SolarMgmt is 0, set the output msg.payload to 4 and stop the function\n    SolarState = 4;\n} else if (SolarMgmt === 1) {\n    // If SolarMgmt is 1, set the output msg.payload to 1 and stop the function\n    SolarState = 1;\n} else if (SolarMgmt === 20) {\n    // If SolarMgmt is 20, continue processing\n\n    // Check if ChargeEnabled is 0 or 1\n    if (ChargeEnabledSol === 0) {\n        // If ChargeEnabled is 0, set the output payload to 4\n        SolarState = 4;\n    } else if (ChargeEnabledSol === 1) {\n        // If ChargeEnabled is 1, continue processing\n\n        // Check if BalanceNeed is 0 or 1\n        if (BalanceNeed === 0) {\n            // If BalanceNeed is 0, set SolarState to 1 as long as BattSoc is smaller than MaxSoc\n            if (BattSoc < SailMaxSoc) {\n                SolarState = 1;\n            } else {\n                // If BattSoc equals or is bigger than MaxSoc, set SolarState to 4 as payload\n                SolarState = 4;\n\n                // Update ChargeEnabled to global as 0\n                ChargeEnabledSol = 0;\n                global.set(\"ChargeEnabledSol\", ChargeEnabledSol);\n            }\n        } else if (BalanceNeed === 1) {\n            // If BalanceNeed is 1, set SolarState to 1 as long as BalanceNeed is not 0\n            SolarState = 1;\n        }\n    }\n}\n\n// Set the output msg.payload with SolarState\nmsg.payload = SolarState;\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 520,
+        "wires": [
+            [
+                "6bc85d04f1e08a53",
+                "7aeaa83f6eb21266",
+                "4649d1d0ac98299d",
+                "f4eac957b349a9cf",
+                "a9990c108185fa91",
+                "7812c388a7c4a89c",
+                "0a5829d3b7be0230"
+            ]
+        ]
+    },
+    {
+        "id": "a035f5edc4d2b344",
+        "type": "inject",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 520,
+        "wires": [
+            [
+                "e17bceca8d9aec8f"
+            ]
+        ]
+    },
+    {
+        "id": "6689dc14a9c5d257",
+        "type": "comment",
+        "z": "81c7a8a38f0557f0",
+        "name": "Function to manage the solar array based on conditions like battery SOC and balance need. On, Off, or cycle battery on the dashboard",
+        "info": "",
+        "x": 470,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "234252b3e683cba9",
+        "type": "function",
+        "z": "81c7a8a38f0557f0",
+        "name": "Solar ChargeEnabledSol feedback",
+        "func": "\n// Retrieve ChargeEnabled from the global context\nvar ChargeEnabledSol = global.get(\"ChargeEnabledSol\");\n\n// Output 0 or 1 based on the value of ChargeEnabledSol\nif (ChargeEnabledSol === 1) {\n    msg.payload = 1; // Output 1 if ChargeEnabledSol is 1\n} else {\n    msg.payload = 0; // Output 0 for any other value of ChargeEnabledSol\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 280,
+        "wires": [
+            [
+                "4ae06a54ee251db9"
+            ]
+        ]
+    },
+    {
+        "id": "4ae06a54ee251db9",
+        "type": "ui_led",
+        "z": "81c7a8a38f0557f0",
+        "order": 17,
+        "group": "0489adf761799c8a",
+        "width": 3,
+        "height": 1,
+        "label": "Solar Charging Enabled",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Solar Charging Enabled",
+        "x": 1530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2016e39ae85215a4",
+        "type": "inject",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "234252b3e683cba9"
+            ]
+        ]
+    },
+    {
+        "id": "b2d7a81745cd8a06",
+        "type": "function",
+        "z": "81c7a8a38f0557f0",
+        "name": "Reset ChargeEnabledSol based on SOC",
+        "func": "\n// Retrieve values from global context\nvar ChargeEnabledSol = global.get(\"ChargeEnabledSol\");\nvar MultiRestartSoc = global.get(\"MultiRestartSoc\");\nvar BattSoc = global.get(\"BattSoc\");\n\n// Check if MultiChargeEnabled is 0\nif (ChargeEnabledSol === 0) {\n    // Compare BattSoc to MultiRestartSoc\n    if (BattSoc <= MultiRestartSoc) {\n        // Set ChargeEnabledSol to 1\n        global.set(\"ChargeEnabledSol\", 1);\n    }\n}\n\n// node.warn(\"MultiChargeEnabled: \" + MultiChargeEnabled);\n// node.warn(\"RestartSOC: \" + RestartSOC);\n// node.warn(\"BattSoc: \" + BattSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81069249e14b1f81",
+        "type": "inject",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "b2d7a81745cd8a06"
+            ]
+        ]
+    },
+    {
+        "id": "e02d59ba112ba183",
+        "type": "ui_gauge",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "group": "0489adf761799c8a",
+        "order": 41,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Battery Voltage",
+        "label": "V",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#f2071f",
+            "#00b500",
+            "#f2071f"
+        ],
+        "seg1": "23.5",
+        "seg2": "28.5",
+        "diff": false,
+        "className": "",
+        "x": 1080,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "13738945c006a257",
+        "type": "victron-input-battery",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Dc/0/Voltage",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Cavendish BMS"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Voltage",
+            "type": "float",
+            "name": "Battery voltage (V)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "e02d59ba112ba183"
+            ]
+        ]
+    },
+    {
+        "id": "4a471ea12ff66b39",
+        "type": "ui_gauge",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "group": "0489adf761799c8a",
+        "order": 40,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Battery Current",
+        "label": "A",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "300",
+        "colors": [
+            "#163fe3",
+            "#00b500",
+            "#f0740f"
+        ],
+        "seg1": "20",
+        "seg2": "150",
+        "diff": false,
+        "className": "",
+        "x": 1080,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a44786b2ca271e8d",
+        "type": "victron-input-battery",
+        "z": "81c7a8a38f0557f0",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Dc/0/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Cavendish BMS"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Current",
+            "type": "float",
+            "name": "Battery current (A)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "4a471ea12ff66b39"
+            ]
+        ]
+    },
+    {
+        "id": "6bc85d04f1e08a53",
+        "type": "debug",
+        "z": "81c7a8a38f0557f0",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c80504f9e191427e",
+        "type": "ui_multistate_switch",
+        "z": "81c7a8a38f0557f0",
+        "name": "",
+        "group": "0489adf761799c8a",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "label": "Solar",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Auto",
+                "value": "20",
+                "valueType": "num",
+                "color": "#009999"
+            },
+            {
+                "label": "On",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Off",
+                "value": "4",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "bf62a1d144aa2525"
+            ]
+        ]
+    },
+    {
+        "id": "3f98e820de81c288",
+        "type": "inject",
+        "z": "81c7a8a38f0557f0",
+        "name": "Inject Solar ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "c80504f9e191427e"
+            ]
+        ]
+    },
+    {
+        "id": "bf62a1d144aa2525",
+        "type": "function",
+        "z": "81c7a8a38f0557f0",
+        "name": "Solar Management",
+        "func": "// Extract the value of the multistate switch from the input message\nvar SolarMgmt = msg.payload;\n\n// Set the switch value as a global variable\nglobal.set(\"SolarMgmt\", SolarMgmt);\n\n// Return a message for reference or further processing (optional)\nmsg.payload = \"SolarMgmt: \" + SolarMgmt;\n\n// Pass the message to the next node\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db442d095bcdbcf4",
+        "type": "victron-input-alternator",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.alternator/279",
+        "path": "/Dc/0/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.alternator/279",
+            "name": "Cavendish STBD Alt"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Current",
+            "type": "float",
+            "name": "Battery current (A)"
+        },
+        "name": "Stbd Alternator A",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "3a4278603e0daf75"
+            ]
+        ]
+    },
+    {
+        "id": "3a4278603e0daf75",
+        "type": "ui_gauge",
+        "z": "11a4bfd096900c1f",
+        "name": "Stbd Alternator Charge",
+        "group": "0489adf761799c8a",
+        "order": 32,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Stbd Alternator Charge",
+        "label": "A",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "120",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "110",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "50c4921f2f9b7d05",
+        "type": "ui_gauge",
+        "z": "11a4bfd096900c1f",
+        "name": "Port Alternator Charge",
+        "group": "0489adf761799c8a",
+        "order": 30,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Port Alternator Charge",
+        "label": "A",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "120",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "110",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "0b32455328e3ba1d",
+        "type": "victron-input-dcsource",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.dcsource/279",
+        "path": "/Dc/0/Current",
+        "serviceObj": {
+            "service": "com.victronenergy.dcsource/279",
+            "name": "Cavendish PORT Alt"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Current",
+            "type": "float",
+            "name": "Battery current (A)"
+        },
+        "name": "Port Alternator A",
+        "onlyChanges": false,
+        "x": 100,
+        "y": 420,
+        "wires": [
+            [
+                "50c4921f2f9b7d05"
+            ]
+        ]
+    },
+    {
+        "id": "66756d6406d7b3fc",
+        "type": "comment",
+        "z": "11a4bfd096900c1f",
+        "name": "Dashboard ",
+        "info": "",
+        "x": 60,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "10472a56a18a9948",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store StbdAlt temp to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar StbdAltTemp = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"StbdAltTemp\", StbdAltTemp);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 560,
+        "wires": [
+            [
+                "8fb6ae39f85ac2ba"
+            ]
+        ]
+    },
+    {
+        "id": "4ec797afb2f08177",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store PortAlttemp to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar PortAltTemp = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"PortAltTemp\", PortAltTemp);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 620,
+        "wires": [
+            [
+                "9e4ba3399ba08f26"
+            ]
+        ]
+    },
+    {
+        "id": "29b09630e60ab796",
+        "type": "victron-input-alternator",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.alternator/279",
+        "path": "/Dc/0/Temperature",
+        "serviceObj": {
+            "service": "com.victronenergy.alternator/279",
+            "name": "Cavendish STBD Alt"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Temperature",
+            "type": "float",
+            "name": "Battery temperature (°C)"
+        },
+        "name": "Port Alternator T°",
+        "onlyChanges": false,
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "4ec797afb2f08177"
+            ]
+        ]
+    },
+    {
+        "id": "47d4c2e0c46144a2",
+        "type": "victron-input-dcsource",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.dcsource/279",
+        "path": "/Dc/0/Temperature",
+        "serviceObj": {
+            "service": "com.victronenergy.dcsource/279",
+            "name": "Cavendish PORT Alt"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Temperature",
+            "type": "float",
+            "name": "Battery temperature (°C)"
+        },
+        "name": "Port Alternator T°",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "10472a56a18a9948"
+            ]
+        ]
+    },
+    {
+        "id": "6341814816a12081",
+        "type": "victron-input-relay",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.system/0",
+        "path": "/Relay/0/State",
+        "serviceObj": {
+            "service": "com.victronenergy.system/0",
+            "name": "Venus system"
+        },
+        "pathObj": {
+            "path": "/Relay/0/State",
+            "type": "enum",
+            "name": "Venus relay 1 state",
+            "enum": {
+                "0": "Open",
+                "1": "Closed"
+            }
+        },
+        "initial": "",
+        "name": "Alternator Relay State",
+        "onlyChanges": false,
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "4e295b97903995f8"
+            ]
+        ]
+    },
+    {
+        "id": "4e295b97903995f8",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store Alternator state to global",
+        "func": "// Retrieve the current AlternatorState state from the payload\nvar AlternatorState = msg.payload;\n\n// Store the current charger state (AlternatorState state) as AlternatorState in the global context\nglobal.set(\"AlternatorState\", AlternatorState);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84456011fc12386f",
+        "type": "comment",
+        "z": "11a4bfd096900c1f",
+        "name": "Values Retrieved from Victron nodes",
+        "info": "",
+        "x": 160,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "28335f522ecaa700",
+        "type": "ui_slider",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "label": "Port alt temp",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "20",
+        "max": "130",
+        "step": "5",
+        "className": "",
+        "x": 510,
+        "y": 580,
+        "wires": [
+            [
+                "10472a56a18a9948"
+            ]
+        ]
+    },
+    {
+        "id": "d441fabdd6f6d882",
+        "type": "ui_slider",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "label": "Stbd alt temp",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "20",
+        "max": "130",
+        "step": "5",
+        "className": "",
+        "x": 510,
+        "y": 640,
+        "wires": [
+            [
+                "4ec797afb2f08177"
+            ]
+        ]
+    },
+    {
+        "id": "9f0eb24ba68e221d",
+        "type": "victron-input-battery",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.battery/0",
+        "path": "/Dc/0/Voltage",
+        "serviceObj": {
+            "service": "com.victronenergy.battery/0",
+            "name": "Cavendish BMS"
+        },
+        "pathObj": {
+            "path": "/Dc/0/Voltage",
+            "type": "float",
+            "name": "Battery voltage (V)"
+        },
+        "name": "",
+        "onlyChanges": false,
+        "roundValues": "1",
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "57568aa44a91fb47"
+            ]
+        ]
+    },
+    {
+        "id": "57568aa44a91fb47",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store Battery Voltage to global",
+        "func": "// Retrieve the current BattVoltage state from the payload\nvar BattVoltage = msg.payload;\n\n// Store the current charger state (BattVoltage state) as BattVoltage in the global context\nglobal.set(\"BattVoltage\", BattVoltage);\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1b42a80b9de86a7",
+        "type": "ui_slider",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "label": "Battery voltage",
+        "tooltip": "",
+        "group": "0d42c411c0f4bfb3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "24",
+        "max": "29",
+        "step": "0.2",
+        "className": "",
+        "x": 520,
+        "y": 700,
+        "wires": [
+            [
+                "57568aa44a91fb47"
+            ]
+        ]
+    },
+    {
+        "id": "8df039a76d53a64a",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "Default MaxTemp Alternators",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.3",
+        "topic": "",
+        "payload": "120",
+        "payloadType": "num",
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "b0c44a9f06b889de"
+            ]
+        ]
+    },
+    {
+        "id": "b0c44a9f06b889de",
+        "type": "ui_numeric",
+        "z": "11a4bfd096900c1f",
+        "name": "Alternator Max Temp",
+        "label": "Alternator Max Temp",
+        "tooltip": "This defines at what temperature measured on the alternators we will stop the regulators. Safety measure to avoid damaging the alternators",
+        "group": "0489adf761799c8a",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "90",
+        "max": "130",
+        "step": "5",
+        "className": "",
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "92bc40f04384207a"
+            ]
+        ]
+    },
+    {
+        "id": "92bc40f04384207a",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store AltMaxTemp to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar AltMaxTemp = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"AltMaxTemp\", AltMaxTemp);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44c91b72d0646318",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "ChargeEnabled feedback",
+        "func": "\n// Retrieve ChargeEnabled from the global context\nvar AltChargeEnabled = global.get(\"AltChargeEnabled\");\n\n// Output 0 or 1 based on the value of AltChargeEnabled\nif (AltChargeEnabled === 1) {\n    msg.payload = 1; // Output 1 if AltChargeEnabled is 1\n} else {\n    msg.payload = 0; // Output 0 for any other value of ChargeEnabled\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b67bd6b82b7b3a0d",
+        "type": "ui_led",
+        "z": "11a4bfd096900c1f",
+        "order": 13,
+        "group": "0489adf761799c8a",
+        "width": 3,
+        "height": 1,
+        "label": "Alt Charging Enabled",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Alt Charging Enabled",
+        "x": 1420,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "0680c180b5d0d284",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 1300,
+        "wires": [
+            [
+                "44c91b72d0646318"
+            ]
+        ]
+    },
+    {
+        "id": "acb1b23240c6a452",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Reset ChargeEnabled based on SOC",
+        "func": "// Retrieve values from global context\nvar AltChargeEnabled = global.get(\"AltChargeEnabled\");\nvar MultiRestartSoc = global.get(\"MultiRestartSoc\");\nvar BattSoc = global.get(\"BattSoc\");\n\n// Check if ChargeEnabled is 0\nif (AltChargeEnabled === 0) {\n    // Compare BattSoc to RestartSOC\n    if (BattSoc <= MultiRestartSoc) {\n        // Set ChargeEnabled to 1\n        global.set(\"AltChargeEnabled\", 1);\n    }\n}\n\n// node.warn(\"ChargeEnabled: \" + ChargeEnabled);\n// node.warn(\"RestartSOC: \" + RestartSOC);\n// node.warn(\"BattSoc: \" + BattSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ec2ca4a79c5e672",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 1340,
+        "wires": [
+            [
+                "acb1b23240c6a452"
+            ]
+        ]
+    },
+    {
+        "id": "38831cfa11339630",
+        "type": "comment",
+        "z": "11a4bfd096900c1f",
+        "name": "Alternator Charge Enabled",
+        "info": "",
+        "x": 110,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "6bad76ae860ca9d0",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Alternator Managment",
+        "func": "// Alternator Management Function\n// Retrieve the values from the global context\nvar AltSOCmgmt = global.get(\"AltSOCmgmt\");\nvar PortAltTemp = global.get(\"PortAltTemp\");\nvar StbdAltTemp = global.get(\"StbdAltTemp\");\nvar AltMaxTemp = global.get(\"AltMaxTemp\");\nvar BattSoc = global.get(\"BattSoc\");\nvar SailMaxSoc = global.get(\"SailMaxSoc\");\nvar BalanceNeed = global.get(\"BalanceNeed\");\nvar AlternatorState = global.get(\"AlternatorState\");\nvar AltChargeEnabled = global.get(\"AltChargeEnabled\");\n\n\nvar tempAlternatorState = AlternatorState;\n\n// Add conditions based on temperatures before running the function:\n// If PortAltTemp or StbdAltTemp are bigger than AltMaxTemp, stop function output 0. If PortAltTemp and StbdAltTemp are smaller than AltMaxTemp, continue function\nif (PortAltTemp > AltMaxTemp || StbdAltTemp > AltMaxTemp) {\n    AlternatorState = 0;\n} else if (PortAltTemp < AltMaxTemp && StbdAltTemp < AltMaxTemp) {\n    if (AltSOCmgmt === 0) {\n        AlternatorState = 0;\n    } else if (AltSOCmgmt === 1) {\n        if (AltChargeEnabled === 0) {\n            AlternatorState = 0;\n        } else if (AltChargeEnabled === 1) {\n            if (BalanceNeed === 0) {\n                if (BattSoc < SailMaxSoc) {\n                    AlternatorState = 1;\n                } else {\n                    AlternatorState = 0;\n\n                    AltChargeEnabled = 0;\n                    global.set(\"AltChargeEnabled\", AltChargeEnabled);\n                }\n            } else if (BalanceNeed === 1) {\n                AlternatorState = 1;\n            }\n        }\n    }\n}\n\nmsg.payload = AlternatorState;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1580,
+        "wires": [
+            [
+                "417922e8977e855b",
+                "b67bd6b82b7b3a0d",
+                "a73efdb8ceac55af"
+            ]
+        ]
+    },
+    {
+        "id": "417922e8977e855b",
+        "type": "victron-output-relay",
+        "z": "11a4bfd096900c1f",
+        "service": "com.victronenergy.system/0",
+        "path": "/Relay/1/State",
+        "serviceObj": {
+            "service": "com.victronenergy.system/0",
+            "name": "Venus device"
+        },
+        "pathObj": {
+            "path": "/Relay/1/State",
+            "type": "enum",
+            "name": "Venus relay 2 state",
+            "enum": {
+                "0": "Open",
+                "1": "Closed"
+            },
+            "writable": true
+        },
+        "initial": "",
+        "name": "Alternator ON or OFF",
+        "onlyChanges": false,
+        "x": 1420,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "c4c109cd160e671d",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 70,
+        "y": 1580,
+        "wires": [
+            [
+                "6bad76ae860ca9d0"
+            ]
+        ]
+    },
+    {
+        "id": "84558b2bdd4d1b9a",
+        "type": "comment",
+        "z": "11a4bfd096900c1f",
+        "name": "Function to manage the alternator relay based on conditions like Alternator temp, state of charge and balance need. Timeout for debouncing purpose included",
+        "info": "",
+        "x": 520,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "e138b20ed159b311",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Alternator SOC managment to global",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar AltSOCmgmt = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"AltSOCmgmt\", AltSOCmgmt);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "247289a389946fcf",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "Inject Alt Auto",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "9de27f987249dda1"
+            ]
+        ]
+    },
+    {
+        "id": "9de27f987249dda1",
+        "type": "ui_multistate_switch",
+        "z": "11a4bfd096900c1f",
+        "name": "Alternator charge cycles ",
+        "group": "0489adf761799c8a",
+        "order": 14,
+        "width": 6,
+        "height": 1,
+        "label": "Alternator charge cycles ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": true,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Automatic",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Manual",
+                "value": "0",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 530,
+        "y": 80,
+        "wires": [
+            [
+                "e138b20ed159b311"
+            ]
+        ]
+    },
+    {
+        "id": "947f58d3bea068b9",
+        "type": "comment",
+        "z": "11a4bfd096900c1f",
+        "name": "User interactive Local Values",
+        "info": "Auto = 1\nManual = 0",
+        "x": 120,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "f53f7413fa7c31b8",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Reset ChargeEnabledAlt based on AltCycle",
+        "func": "// Retrieve values from global context\nvar ChargeEnabledAlt = global.get(\"ChargeEnabledAlt\");\nvar RestartSOC = global.get(\"RestartSOC\");\nvar BattSoc = global.get(\"BattSoc\");\n\n// Check if ChargeEnabledAlt  is 0\nif (ChargeEnabledAlt === 0) {\n    // Compare BattSoc to RestartSOC\n    if (BattSoc <= RestartSOC) {\n        // Set ChargeEnabledAlt  to 1\n        global.set(\"ChargeEnabledAlt\", 1);\n    }\n}\n\n// node.warn(\"ChargeEnabledAlt : \" + ChargeEnabledAlt );\n// node.warn(\"RestartSOC: \" + RestartSOC);\n// node.warn(\"BattSoc: \" + BattSoc);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 2000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "167b069c33d06479",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 2000,
+        "wires": [
+            [
+                "f53f7413fa7c31b8"
+            ]
+        ]
+    },
+    {
+        "id": "a5a97826792f9399",
+        "type": "inject",
+        "z": "11a4bfd096900c1f",
+        "name": "AltChargeEnables on startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.7",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "0fd513daa69bc653"
+            ]
+        ]
+    },
+    {
+        "id": "0fd513daa69bc653",
+        "type": "function",
+        "z": "11a4bfd096900c1f",
+        "name": "Store AltChargeEnabled",
+        "func": "// Retrieve the value from the Victron input node's payload\nvar AltChargeEnabled = msg.payload;\n\n// Set the value as a global variable\nglobal.set(\"AltChargeEnabled\", AltChargeEnabled);\n\n// Pass the message to the next node (if needed)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8fb6ae39f85ac2ba",
+        "type": "ui_text",
+        "z": "11a4bfd096900c1f",
+        "group": "0489adf761799c8a",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Stbd Alt temp",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1430,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "9e4ba3399ba08f26",
+        "type": "ui_text",
+        "z": "11a4bfd096900c1f",
+        "group": "0489adf761799c8a",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Port Alt temp",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1430,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a73efdb8ceac55af",
+        "type": "debug",
+        "z": "11a4bfd096900c1f",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1520,
+        "wires": []
+    }
+]
