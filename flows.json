@@ -278,7 +278,7 @@
         "type": "function",
         "z": "e595066f0438a795",
         "name": "Debug for global stored values ",
-        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MaxSoc\",\n    \"MultiChargeEnabled\",\n    \"MultiRestartSoc\",\n    \"MultiState\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
+        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MaxSoc\",\n    \"MultiChargeEnabled\",\n    \"MultiRestartSoc\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2246,56 +2246,6 @@
         "wires": []
     },
     {
-        "id": "2969f21f62948814",
-        "type": "ui_template",
-        "z": "2cfbbcc39f1935b5",
-        "group": "2d51d403d65e5320",
-        "name": "Display Inverter/Charger State",
-        "order": 13,
-        "width": 9,
-        "height": 2,
-        "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n    margin-bottom: 0.2ex;\n  }\n\n  .rectangle .label {\n    font-weight: bold;\n    margin: 0;\n    color: black;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 3 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">On</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 2 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Inverter</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 1 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Charger</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 4 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Off</span>\n    </div>\n</div>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 370,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7a4db78808fc121a",
-        "type": "inject",
-        "z": "2cfbbcc39f1935b5",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "2",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "MultiState",
-        "payloadType": "global",
-        "x": 110,
-        "y": 320,
-        "wires": [
-            [
-                "2969f21f62948814"
-            ]
-        ]
-    },
-    {
         "id": "7083e59f24c469b7",
         "type": "victron-input-vebus",
         "z": "2cfbbcc39f1935b5",
@@ -2462,7 +2412,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Set MultiChargeEnabled based on SoC",
-        "func": "const ChargeToFull = global.get(\"ChargeToFull\");\nconst MultiState = global.get(\"MultiState\");\nconst BattSoc = global.get(\"BattSoc\");\nconst MaxSoc = global.get(\"MaxSoc\");\nconst MultiRestartSoc = global.get(\"MultiRestartSoc\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiChargeEnabled === 0) {\n    if (ChargeToFull === 1) {\n        MultiChargeEnabled = 1;\n    }\n    if (BattSoc <= MultiRestartSoc) {\n        MultiChargeEnabled = 1;\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (BattSoc >= MaxSoc) {\n        if (ChargeToFull === 1) {\n            node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing\"});\n            return;\n        }\n        MultiChargeEnabled = 0;\n    }\n} else if (MultiChargeEnabled === undefined) {\n    node.warn(\"Startup: Guessing MultiChargeEnabled from MultiState: \" + MultiState);\n    if (MultiState === MultiModes.INVERTER_ONLY\n        || MultiState === MultiModes.OFF) {\n        MultiChargeEnabled = 0;\n    } else if (MultiState === MultiModes.CHARGER_ONLY\n               || MultiState == MultiModes.ON) {\n        MultiChargeEnabled = 1;\n    }\n}\n\nif (MultiChargeEnabled === 1) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\n} else {\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disable\"});\n}\n\nreturn {\n    payload: MultiChargeEnabled,\n};",
+        "func": "const ChargeToFull = global.get(\"ChargeToFull\");\nconst MultiMode = flow.get(\"MultiMode\");\nconst BattSoc = global.get(\"BattSoc\");\nconst MaxSoc = global.get(\"MaxSoc\");\nconst MultiRestartSoc = global.get(\"MultiRestartSoc\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiChargeEnabled === 0) {\n    if (ChargeToFull === 1) {\n        MultiChargeEnabled = 1;\n    }\n    if (BattSoc <= MultiRestartSoc) {\n        MultiChargeEnabled = 1;\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (BattSoc >= MaxSoc) {\n        if (ChargeToFull === 1) {\n            node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing\"});\n            return;\n        }\n        MultiChargeEnabled = 0;\n    }\n} else if (MultiChargeEnabled === undefined) {\n    node.warn(\"Startup: Guessing MultiChargeEnabled from MultiMode: \" + MultiMode);\n    if (MultiMode === MultiModes.INVERTER_ONLY\n        || MultiMode === MultiModes.OFF) {\n        MultiChargeEnabled = 0;\n    } else if (MultiMode === MultiModes.CHARGER_ONLY\n               || MultiMode == MultiModes.ON) {\n        MultiChargeEnabled = 1;\n    }\n}\n\nif (MultiChargeEnabled === 1) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\n} else {\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disable\"});\n}\n\nreturn {\n    payload: MultiChargeEnabled,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2589,15 +2539,15 @@
         "id": "deb41ea4feccb814",
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
-        "name": "Control Multiplus Mode",
-        "func": "const MultiSOCmgmt = global.get(\"MultiSOCmgmt\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\nconst MultiState = global.get(\"MultiState\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiSOCmgmt !== 1) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Management Disabled\"});\n    return;\n}\n\nif (MultiChargeEnabled === 0) {\n    if (MultiState === MultiModes.CHARGER_ONLY) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Off\"});\n        return {\n            payload: MultiModes.OFF,\n        };\n    } else if (MultiState === MultiModes.ON) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Charging off\"});\n        return {\n            payload: MultiModes.INVERTER_ONLY,\n        };\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (MultiState === MultiModes.OFF) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"On\"});\n        return {\n            payload: MultiModes.CHARGER_ONLY,\n        };\n    } else if (MultiState === MultiModes.INVERTER_ONLY) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"Charging on\"});\n        return {\n            payload: MultiModes.ON,\n        };\n    }\n}",
+        "name": "Control MultiPlus Mode",
+        "func": "const MultiMode = flow.get(\"MultiMode\");\nconst MultiSOCmgmt = global.get(\"MultiSOCmgmt\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiSOCmgmt !== 1) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Management Disabled\"});\n    return;\n}\n\nif (MultiChargeEnabled === 0) {\n    if (MultiMode === MultiModes.CHARGER_ONLY) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Off\"});\n        return {\n            payload: MultiModes.OFF,\n        };\n    } else if (MultiMode === MultiModes.ON) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Charging off\"});\n        return {\n            payload: MultiModes.INVERTER_ONLY,\n        };\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (MultiMode === MultiModes.OFF) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"On\"});\n        return {\n            payload: MultiModes.CHARGER_ONLY,\n        };\n    } else if (MultiMode === MultiModes.INVERTER_ONLY) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"Charging on\"});\n        return {\n            payload: MultiModes.ON,\n        };\n    }\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
+        "x": 290,
         "y": 1020,
         "wires": [
             [
@@ -3245,8 +3195,8 @@
         "rules": [
             {
                 "t": "set",
-                "p": "MultiState",
-                "pt": "global",
+                "p": "MultiMode",
+                "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
             }
@@ -3256,10 +3206,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 480,
+        "x": 470,
         "y": 100,
         "wires": [
-            []
+            [
+                "2969f21f62948814"
+            ]
         ]
     },
     {
@@ -3559,6 +3511,93 @@
         "y": 520,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "2969f21f62948814",
+        "type": "ui_template",
+        "z": "d2855c6ff5fe1d8c",
+        "group": "2d51d403d65e5320",
+        "name": "Display Inverter/Charger State",
+        "order": 13,
+        "width": 9,
+        "height": 2,
+        "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n    margin-bottom: 0.2ex;\n  }\n\n  .rectangle .label {\n    font-weight: bold;\n    margin: 0;\n    color: black;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 3 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">On</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 2 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Inverter</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 1 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Charger</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 4 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Off</span>\n    </div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 730,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6893f4f8993d3cfe",
+        "type": "function",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Debug for flow values ",
+        "func": "const variableNames = [\n    \"MultiMode\",\n];\n\nconst flowValues = Object.fromEntries(\n    variableNames.map(name => [name, flow.get(name)])\n);\n\nreturn {\n    payload: flowValues,\n};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1280,
+        "wires": [
+            [
+                "e8a168c011c4142c"
+            ]
+        ]
+    },
+    {
+        "id": "e8a168c011c4142c",
+        "type": "debug",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Charge Cycle Flow variables",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "58c14364bedbe8df",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 1280,
+        "wires": [
+            [
+                "6893f4f8993d3cfe"
+            ]
         ]
     },
     {
