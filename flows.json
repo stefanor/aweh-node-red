@@ -278,7 +278,7 @@
         "type": "function",
         "z": "e595066f0438a795",
         "name": "Debug for global stored values ",
-        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MaxSoc\",\n    \"MultiChargeEnabled\",\n    \"MultiRestartSoc\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
+        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MaxSoc\",\n    \"MultiChargeEnabled\",\n    \"MultiRestartSoc\",\n    \"SailMaxSoc\",\n    \"SailRestartSoc\",\n    \"StorMaxSoc\",\n    \"StorRestartSoc\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2531,7 +2531,7 @@
         "initial": "",
         "name": "",
         "onlyChanges": false,
-        "x": 580,
+        "x": 600,
         "y": 1020,
         "wires": []
     },
@@ -2540,7 +2540,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Control MultiPlus Mode",
-        "func": "const MultiMode = flow.get(\"MultiMode\");\nconst MultiSOCmgmt = global.get(\"MultiSOCmgmt\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiSOCmgmt !== 1) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Management Disabled\"});\n    return;\n}\n\nif (MultiChargeEnabled === 0) {\n    if (MultiMode === MultiModes.CHARGER_ONLY) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Off\"});\n        return {\n            payload: MultiModes.OFF,\n        };\n    } else if (MultiMode === MultiModes.ON) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Charging off\"});\n        return {\n            payload: MultiModes.INVERTER_ONLY,\n        };\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (MultiMode === MultiModes.OFF) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"On\"});\n        return {\n            payload: MultiModes.CHARGER_ONLY,\n        };\n    } else if (MultiMode === MultiModes.INVERTER_ONLY) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"Charging on\"});\n        return {\n            payload: MultiModes.ON,\n        };\n    }\n}",
+        "func": "const MultiMode = flow.get(\"MultiMode\");\nconst MultiSocMgmt = flow.get(\"MultiSocMgmt\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiSocMgmt !== 1) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Management Disabled\"});\n    return;\n}\n\nif (MultiChargeEnabled === 0) {\n    if (MultiMode === MultiModes.CHARGER_ONLY) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Off\"});\n        return {\n            payload: MultiModes.OFF,\n        };\n    } else if (MultiMode === MultiModes.ON) {\n        node.status({fill: \"red\", shape: \"dot\", text: \"Charging off\"});\n        return {\n            payload: MultiModes.INVERTER_ONLY,\n        };\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (MultiMode === MultiModes.OFF) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"On\"});\n        return {\n            payload: MultiModes.CHARGER_ONLY,\n        };\n    } else if (MultiMode === MultiModes.INVERTER_ONLY) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"Charging on\"});\n        return {\n            payload: MultiModes.ON,\n        };\n    }\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3023,7 +3023,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Select MaxSoc",
-        "func": "const CycleMgmt = global.get(\"CycleMgmt\");\nconst StorMaxSoc = global.get(\"StorMaxSoc\");\nconst SailMaxSoc = global.get(\"SailMaxSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MaxSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MaxSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MaxSoc = StorMaxSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MaxSoc =  SailMaxSoc;\n}\n\nnode.status({text: MaxSoc});\nreturn {\n    payload: MaxSoc,\n}",
+        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorMaxSoc = global.get(\"StorMaxSoc\");\nconst SailMaxSoc = global.get(\"SailMaxSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MaxSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MaxSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MaxSoc = StorMaxSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MaxSoc = SailMaxSoc;\n}\n\nnode.status({text: MaxSoc});\nreturn {\n    payload: MaxSoc,\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3222,8 +3222,8 @@
         "rules": [
             {
                 "t": "set",
-                "p": "MultiSOCmgmt",
-                "pt": "global",
+                "p": "MultiSocMgmt",
+                "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
             }
@@ -3233,7 +3233,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
+        "x": 640,
         "y": 280,
         "wires": [
             []
@@ -3248,7 +3248,7 @@
             {
                 "t": "set",
                 "p": "CycleMgmt",
-                "pt": "global",
+                "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
             }
@@ -3258,7 +3258,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 560,
+        "x": 550,
         "y": 340,
         "wires": [
             []
@@ -3383,7 +3383,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 750,
+        "x": 710,
         "y": 1160,
         "wires": [
             []
@@ -3473,7 +3473,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Select MultiRestartSoc",
-        "func": "const CycleMgmt = global.get(\"CycleMgmt\");\nconst StorRestartSoc = global.get(\"StorRestartSoc\");\nconst SailRestartSoc = global.get(\"SailRestartSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MultiRestartSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MultiRestartSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MultiRestartSoc = StorRestartSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MultiRestartSoc =  SailRestartSoc;\n}\n\nnode.status({text: MultiRestartSoc});\nreturn {\n    payload: MultiRestartSoc,\n}",
+        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorRestartSoc = global.get(\"StorRestartSoc\");\nconst SailRestartSoc = global.get(\"SailRestartSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MultiRestartSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MultiRestartSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MultiRestartSoc = StorRestartSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MultiRestartSoc =  SailRestartSoc;\n}\n\nnode.status({text: MultiRestartSoc});\nreturn {\n    payload: MultiRestartSoc,\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3539,7 +3539,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Debug for flow values ",
-        "func": "const variableNames = [\n    \"MultiMode\",\n];\n\nconst flowValues = Object.fromEntries(\n    variableNames.map(name => [name, flow.get(name)])\n);\n\nreturn {\n    payload: flowValues,\n};",
+        "func": "const variableNames = [\n    \"CycleMgmt\",\n    \"MultiMode\",\n    \"MultiSocMgmt\",\n];\n\nconst flowValues = Object.fromEntries(\n    variableNames.map(name => [name, flow.get(name)])\n);\n\nreturn {\n    payload: flowValues,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
