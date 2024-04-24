@@ -1696,7 +1696,7 @@
         "type": "function",
         "z": "a0153a2235a01066",
         "name": "Detect Balancing for BalanceTime",
-        "func": "const balancing = msg.payload;\nconst now = msg.timestamp;\n\nif (balancing == 0) {\n    node.status({fill: \"grey\", shape: \"ring\", text: \"Idle\"});\n    return;\n}\n\nconst BalanceStartTime = flow.get(\"BalanceStartTime\");\nconst BalanceTime = flow.get(\"BalanceTime\");\nconst BalanceTimeMillis = BalanceTime * 60 * 1000;\n\nif (now > BalanceStartTime + BalanceTimeMillis) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Done!\"});\n    return {\n        payload: 0,\n    }\n} else {\n    node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing...\"});\n}",
+        "func": "const balancing = msg.payload;\nconst now = Date.now();\n\nif (balancing == 0) {\n    node.status({fill: \"grey\", shape: \"ring\", text: \"Idle\"});\n    return;\n}\n\nconst BalanceStartTime = flow.get(\"BalanceStartTime\");\nconst BalanceTime = flow.get(\"BalanceTime\");\nconst BalanceTimeMillis = BalanceTime * 60 * 1000;\n\nif (now > BalanceStartTime + BalanceTimeMillis) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Done!\"});\n    return {\n        payload: 0,\n    }\n} else {\n    node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing...\"});\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
