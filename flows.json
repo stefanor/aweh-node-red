@@ -667,7 +667,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 660,
+        "y": 700,
         "wires": [
             [
                 "8d13abf189e782ed"
@@ -696,7 +696,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 110,
-        "y": 660,
+        "y": 700,
         "wires": [
             [
                 "740f0a4e23ca1d56"
@@ -721,7 +721,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 890,
-        "y": 360,
+        "y": 400,
         "wires": []
     },
     {
@@ -745,7 +745,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 110,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
                 "8d13abf189e782ed",
@@ -775,7 +775,7 @@
         "payload": "ChargeToFull",
         "payloadType": "global",
         "x": 140,
-        "y": 720,
+        "y": 760,
         "wires": [
             [
                 "604f46ac7f105e7b"
@@ -789,7 +789,7 @@
         "name": "Trigger ChargeToFull Manually or after BalanceInterval",
         "info": "",
         "x": 200,
-        "y": 480,
+        "y": 520,
         "wires": []
     },
     {
@@ -946,7 +946,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "71f3e6035ef1ebf1"
@@ -1004,7 +1004,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 130,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "8d13abf189e782ed"
@@ -1028,7 +1028,7 @@
         "name": "Detect when balancing is happening and completed",
         "info": "",
         "x": 190,
-        "y": 780,
+        "y": 820,
         "wires": []
     },
     {
@@ -1052,7 +1052,7 @@
         "step": 1,
         "className": "",
         "x": 130,
-        "y": 1280,
+        "y": 1320,
         "wires": [
             [
                 "bad182fe5ad53e8e"
@@ -1081,7 +1081,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 90,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "8d13abf189e782ed"
@@ -1111,7 +1111,7 @@
         "showGlow": true,
         "name": "Charging to Full",
         "x": 360,
-        "y": 720,
+        "y": 760,
         "wires": []
     },
     {
@@ -1137,7 +1137,7 @@
         "showGlow": true,
         "name": "Bms Balancing",
         "x": 800,
-        "y": 900,
+        "y": 940,
         "wires": []
     },
     {
@@ -1237,7 +1237,7 @@
         "to": "",
         "reg": false,
         "x": 770,
-        "y": 600,
+        "y": 640,
         "wires": [
             []
         ]
@@ -1262,7 +1262,7 @@
         "to": "",
         "reg": false,
         "x": 530,
-        "y": 520,
+        "y": 560,
         "wires": [
             []
         ]
@@ -1285,7 +1285,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 190,
-        "y": 1160,
+        "y": 1200,
         "wires": [
             [
                 "c3097bb109292fc4",
@@ -1306,7 +1306,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             [
                 "2a3c7a97c7504deb",
@@ -1334,7 +1334,7 @@
         "to": "",
         "reg": false,
         "x": 990,
-        "y": 1280,
+        "y": 1320,
         "wires": [
             []
         ]
@@ -1352,7 +1352,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "bdd49484fa139c07",
@@ -1367,7 +1367,7 @@
         "name": "Save State",
         "info": "",
         "x": 60,
-        "y": 1360,
+        "y": 1400,
         "wires": []
     },
     {
@@ -1453,7 +1453,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "c1374f4e95ee660f"
@@ -1473,7 +1473,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "b5b2aff3bee12061"
@@ -1487,7 +1487,7 @@
         "property": "payload",
         "name": "",
         "x": 590,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "d6427b9ecace7567"
@@ -1506,7 +1506,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 790,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             []
         ]
@@ -1584,7 +1584,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 450,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "0d0d81337a6c63a8"
@@ -1633,7 +1633,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 630,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "f39cb4e620f6587a",
@@ -1659,7 +1659,7 @@
         "repair": false,
         "outputs": 1,
         "x": 790,
-        "y": 940,
+        "y": 980,
         "wires": [
             [
                 "1c8398f3cab85cb6"
@@ -1704,7 +1704,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "0771e50b5d9a6f16"
@@ -1731,7 +1731,7 @@
         "to": "",
         "reg": false,
         "x": 610,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -1756,7 +1756,7 @@
         "to": "",
         "reg": false,
         "x": 980,
-        "y": 980,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -1779,7 +1779,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 230,
-        "y": 420,
+        "y": 460,
         "wires": [
             [
                 "51e81b316c9ddcd1"
@@ -1804,7 +1804,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 150,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "ddcca6f206c0be70"
@@ -1824,7 +1824,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 420,
+        "y": 460,
         "wires": [
             [
                 "08ad03d2e999060f"
@@ -1849,7 +1849,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 840,
-        "y": 420,
+        "y": 460,
         "wires": []
     },
     {
@@ -1865,7 +1865,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "65f2ef9b0f400360"
@@ -1890,7 +1890,7 @@
         "repair": false,
         "outputs": 1,
         "x": 740,
-        "y": 1240,
+        "y": 1280,
         "wires": [
             [
                 "bad182fe5ad53e8e"
@@ -1917,7 +1917,7 @@
         "to": "",
         "reg": false,
         "x": 770,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             []
         ]
@@ -1929,7 +1929,7 @@
         "name": "Trigger balancing from the BMS",
         "info": "",
         "x": 130,
-        "y": 1120,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1952,7 +1952,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 1160,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -1975,7 +1975,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 150,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "1038f676e6d3d138"
@@ -2000,7 +2000,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 200,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "1211c0daa0aecb0c"
@@ -2020,7 +2020,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "dbafb36232b6d50c"
@@ -2047,7 +2047,7 @@
         "to": "",
         "reg": false,
         "x": 840,
-        "y": 840,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2065,7 +2065,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 1520,
+        "y": 1560,
         "wires": [
             [
                 "d6d8fa0ec312a177"
@@ -2086,7 +2086,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 570,
-        "y": 1520,
+        "y": 1560,
         "wires": []
     },
     {
@@ -2111,7 +2111,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 1520,
+        "y": 1560,
         "wires": [
             [
                 "948816cde80707d5"
@@ -2125,8 +2125,33 @@
         "name": "Debug",
         "info": "",
         "x": 50,
-        "y": 1460,
+        "y": 1500,
         "wires": []
+    },
+    {
+        "id": "b6b99e70790359b5",
+        "type": "inject",
+        "z": "a0153a2235a01066",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "LastBalance",
+        "payloadType": "flow",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "3775f83ceb32f051"
+            ]
+        ]
     },
     {
         "id": "246f15d8289cb3fb",
@@ -4043,7 +4068,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 720,
+        "x": 740,
         "y": 300,
         "wires": [
             []
