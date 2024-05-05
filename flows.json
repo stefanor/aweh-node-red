@@ -145,6 +145,7 @@
     {
         "id": "0d42c411c0f4bfb3",
         "type": "ui_group",
+        "d": true,
         "name": "Debugging and test",
         "tab": "717fcdffd3a123ff",
         "order": 1,
@@ -2248,7 +2249,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input A",
         "group": "2d51d403d65e5320",
-        "order": 12,
+        "order": 11,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2302,7 +2303,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input W",
         "group": "2d51d403d65e5320",
-        "order": 11,
+        "order": 10,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2330,7 +2331,7 @@
         "z": "2cfbbcc39f1935b5",
         "name": "Vessel Input V",
         "group": "2d51d403d65e5320",
-        "order": 10,
+        "order": 9,
         "width": 3,
         "height": 3,
         "gtype": "gage",
@@ -2901,35 +2902,6 @@
         ]
     },
     {
-        "id": "7a2edd39b1cd2de7",
-        "type": "inject",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 90,
-        "y": 340,
-        "wires": [
-            [
-                "67fa06e3caa3daf9"
-            ]
-        ]
-    },
-    {
         "id": "79a93b0453fdb9f2",
         "type": "inject",
         "z": "d2855c6ff5fe1d8c",
@@ -3096,7 +3068,7 @@
         "id": "6baec025b7409eda",
         "type": "ui_led",
         "z": "d2855c6ff5fe1d8c",
-        "order": 9,
+        "order": 8,
         "group": "2d51d403d65e5320",
         "width": 3,
         "height": 1,
@@ -3124,7 +3096,7 @@
         "z": "d2855c6ff5fe1d8c",
         "name": "Multiplus Management",
         "group": "2d51d403d65e5320",
-        "order": 8,
+        "order": 7,
         "width": 6,
         "height": 1,
         "label": "Multiplus Management",
@@ -3159,56 +3131,6 @@
         "wires": [
             [
                 "ee202e80ed9e3ddc"
-            ]
-        ]
-    },
-    {
-        "id": "67fa06e3caa3daf9",
-        "type": "ui_multistate_switch",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "Cycle Management setting",
-        "group": "2d51d403d65e5320",
-        "order": 2,
-        "width": 9,
-        "height": 1,
-        "label": "",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "always",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "Off",
-                "value": "1",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Storage",
-                "value": "2",
-                "valueType": "num",
-                "color": "#999999"
-            },
-            {
-                "label": "Sailing",
-                "value": "3",
-                "valueType": "num",
-                "color": "#ff6666"
-            }
-        ],
-        "topic": "",
-        "x": 300,
-        "y": 340,
-        "wires": [
-            [
-                "5df4336f66d2270b"
             ]
         ]
     },
@@ -3260,31 +3182,6 @@
         "reg": false,
         "x": 640,
         "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5df4336f66d2270b",
-        "type": "change",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "CycleMgmt",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 550,
-        "y": 340,
         "wires": [
             []
         ]
@@ -3544,7 +3441,7 @@
         "z": "d2855c6ff5fe1d8c",
         "group": "2d51d403d65e5320",
         "name": "Display Inverter/Charger State",
-        "order": 13,
+        "order": 12,
         "width": 9,
         "height": 2,
         "format": "<style>\n  .container {\n    border: 2px solid #aaa;\n    border-radius: 10px;\n    text-align: center;\n    padding: 10px;\n  }\n\n  .rectangle {\n    display: inline-block;\n    width: 48%;\n    border-radius: 10px;\n    margin-bottom: 0.2ex;\n  }\n\n  .rectangle .label {\n    font-weight: bold;\n    margin: 0;\n    color: black;\n  }\n</style>\n\n<div class=\"container\">\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 3 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">On</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 2 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Inverter</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 1 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Charger</span>\n    </div>\n    <div class=\"rectangle\" style=\"background-color: {{msg.payload === 4 ? '#7d94d9' : 'white'}};\">\n        <span class=\"label\">Off</span>\n    </div>\n</div>\n",
@@ -3553,7 +3450,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 730,
+        "x": 770,
         "y": 100,
         "wires": [
             []
@@ -3622,6 +3519,110 @@
         "wires": [
             [
                 "6893f4f8993d3cfe"
+            ]
+        ]
+    },
+    {
+        "id": "7a2edd39b1cd2de7",
+        "type": "inject",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "67fa06e3caa3daf9"
+            ]
+        ]
+    },
+    {
+        "id": "5df4336f66d2270b",
+        "type": "change",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CycleMgmt",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "67fa06e3caa3daf9",
+        "type": "ui_multistate_switch",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "Cycle Management setting",
+        "group": "2d51d403d65e5320",
+        "order": 2,
+        "width": 9,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "always",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Storage",
+                "value": "2",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "Sailing",
+                "value": "3",
+                "valueType": "num",
+                "color": "#ff6666"
+            }
+        ],
+        "topic": "",
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "5df4336f66d2270b"
             ]
         ]
     },
