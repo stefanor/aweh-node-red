@@ -278,7 +278,7 @@
         "type": "function",
         "z": "e595066f0438a795",
         "name": "Debug for global stored values ",
-        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MaxSoc\",\n    \"MultiChargeEnabled\",\n    \"MultiRestartSoc\",\n    \"SailMaxSoc\",\n    \"SailRestartSoc\",\n    \"StorMaxSoc\",\n    \"StorRestartSoc\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
+        "func": "const variableNames = [\n    \"BattSoc\",\n    \"ChargeToFull\",\n    \"MultiChargeEnabled\",\n    \"MultiMaxSoc\",\n    \"RestartSoc\",\n    \"SailMaxSoc\",\n    \"SailRestartSoc\",\n    \"SolarMaxSoc\",\n    \"StorMaxSoc\",\n    \"StorRestartSoc\",\n];\n\nconst globalValues = Object.fromEntries(\n    variableNames.map(name => [name, global.get(name)])\n);\n\nreturn {\n    payload: globalValues,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2343,7 +2343,7 @@
         "payload": "MultiChargeEnabled",
         "payloadType": "global",
         "x": 160,
-        "y": 800,
+        "y": 820,
         "wires": [
             [
                 "6baec025b7409eda"
@@ -2355,7 +2355,7 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Set MultiChargeEnabled based on SoC",
-        "func": "const ChargeToFull = global.get(\"ChargeToFull\");\nconst MultiMode = flow.get(\"MultiMode\");\nconst BattSoc = global.get(\"BattSoc\");\nconst MaxSoc = global.get(\"MaxSoc\");\nconst MultiRestartSoc = global.get(\"MultiRestartSoc\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiChargeEnabled === 0) {\n    if (ChargeToFull === 1) {\n        MultiChargeEnabled = 1;\n    }\n    if (BattSoc <= MultiRestartSoc) {\n        MultiChargeEnabled = 1;\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (BattSoc >= MaxSoc) {\n        if (ChargeToFull === 1) {\n            node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing\"});\n            return;\n        }\n        MultiChargeEnabled = 0;\n    }\n} else if (MultiChargeEnabled === undefined) {\n    node.warn(\"Startup: Guessing MultiChargeEnabled from MultiMode: \" + MultiMode);\n    if (MultiMode === MultiModes.INVERTER_ONLY\n        || MultiMode === MultiModes.OFF) {\n        MultiChargeEnabled = 0;\n    } else if (MultiMode === MultiModes.CHARGER_ONLY\n               || MultiMode == MultiModes.ON) {\n        MultiChargeEnabled = 1;\n    }\n}\n\nif (MultiChargeEnabled === 1) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\n} else {\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disable\"});\n}\n\nreturn {\n    payload: MultiChargeEnabled,\n};",
+        "func": "const ChargeToFull = global.get(\"ChargeToFull\");\nconst MultiMode = flow.get(\"MultiMode\");\nconst BattSoc = global.get(\"BattSoc\");\nconst MultiMaxSoc = global.get(\"MultiMaxSoc\");\nconst RestartSoc = global.get(\"RestartSoc\");\nlet MultiChargeEnabled = global.get(\"MultiChargeEnabled\");\n\nconst MultiModes = Object.freeze({\n    CHARGER_ONLY: 1,\n    INVERTER_ONLY: 2,\n    ON: 3,\n    OFF: 4,\n});\n\nif (MultiChargeEnabled === 0) {\n    if (ChargeToFull === 1) {\n        MultiChargeEnabled = 1;\n    }\n    if (BattSoc <= RestartSoc) {\n        MultiChargeEnabled = 1;\n    }\n} else if (MultiChargeEnabled === 1) {\n    if (BattSoc >= MultiMaxSoc) {\n        if (ChargeToFull === 1) {\n            node.status({fill: \"yellow\", shape: \"dot\", text: \"Balancing\"});\n            return;\n        }\n        MultiChargeEnabled = 0;\n    }\n} else if (MultiChargeEnabled === undefined) {\n    node.warn(\"Startup: Guessing MultiChargeEnabled from MultiMode: \" + MultiMode);\n    if (MultiMode === MultiModes.INVERTER_ONLY\n        || MultiMode === MultiModes.OFF) {\n        MultiChargeEnabled = 0;\n    } else if (MultiMode === MultiModes.CHARGER_ONLY\n               || MultiMode == MultiModes.ON) {\n        MultiChargeEnabled = 1;\n    }\n}\n\nif (MultiChargeEnabled === 1) {\n    node.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\n} else {\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disable\"});\n}\n\nreturn {\n    payload: MultiChargeEnabled,\n};",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2363,7 +2363,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 860,
+        "y": 880,
         "wires": [
             [
                 "a061d7684091f4c1"
@@ -2392,7 +2392,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 860,
+        "y": 880,
         "wires": [
             [
                 "a5e415478fddb578"
@@ -2406,7 +2406,7 @@
         "name": "Charge Cycle Enabled. Determine Charge status from SoC and Balancing",
         "info": "",
         "x": 260,
-        "y": 740,
+        "y": 760,
         "wires": []
     },
     {
@@ -2909,18 +2909,19 @@
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
         "name": "Select MaxSoc",
-        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorMaxSoc = global.get(\"StorMaxSoc\");\nconst SailMaxSoc = global.get(\"SailMaxSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MaxSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MaxSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MaxSoc = StorMaxSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MaxSoc = SailMaxSoc;\n}\n\nnode.status({text: MaxSoc});\nreturn {\n    payload: MaxSoc,\n}",
+        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorMaxSoc = global.get(\"StorMaxSoc\");\nconst SailMaxSoc = global.get(\"SailMaxSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    MARINA: 3,\n    SAILING: 4,\n});\n\nlet MultiMaxSoc = null;\nlet SolarMaxSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MultiMaxSoc = null;\n    SolarMaxSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MultiMaxSoc = StorMaxSoc;\n    SolarMaxSoc = StorMaxSoc;\n} else if (CycleMgmt === CycleMgmtModes.MARINA) {\n    MultiMaxSoc = StorMaxSoc;\n    SolarMaxSoc = SailMaxSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MultiMaxSoc = SailMaxSoc;\n    SolarMaxSoc = SailMaxSoc;\n}\n\nnode.status({text: MultiMaxSoc});\nreturn {\n    payload: {\n        multi: MultiMaxSoc,\n        solar: SolarMaxSoc,\n    },\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
+        "x": 360,
         "y": 660,
         "wires": [
             [
-                "084c75a90bf0b591"
+                "084c75a90bf0b591",
+                "ab1dea7f144c4f08"
             ]
         ]
     },
@@ -2976,7 +2977,7 @@
         "showGlow": true,
         "name": "Multiplus Charging Enabled",
         "x": 440,
-        "y": 800,
+        "y": 820,
         "wires": []
     },
     {
@@ -3220,7 +3221,7 @@
         "to": "",
         "reg": false,
         "x": 710,
-        "y": 860,
+        "y": 880,
         "wires": [
             []
         ]
@@ -3233,9 +3234,9 @@
         "rules": [
             {
                 "t": "set",
-                "p": "MaxSoc",
+                "p": "MultiMaxSoc",
                 "pt": "global",
-                "to": "payload",
+                "to": "payload.multi",
                 "tot": "msg"
             }
         ],
@@ -3244,7 +3245,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 510,
+        "x": 610,
         "y": 660,
         "wires": [
             []
@@ -3283,15 +3284,15 @@
         "id": "5edc41e7ca6a3b36",
         "type": "function",
         "z": "d2855c6ff5fe1d8c",
-        "name": "Select MultiRestartSoc",
-        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorRestartSoc = global.get(\"StorRestartSoc\");\nconst SailRestartSoc = global.get(\"SailRestartSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    SAILING: 3,\n});\n\nlet MultiRestartSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    MultiRestartSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    MultiRestartSoc = StorRestartSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    MultiRestartSoc =  SailRestartSoc;\n}\n\nnode.status({text: MultiRestartSoc});\nreturn {\n    payload: MultiRestartSoc,\n}",
+        "name": "Select RestartSoc",
+        "func": "const CycleMgmt = flow.get(\"CycleMgmt\");\nconst StorRestartSoc = global.get(\"StorRestartSoc\");\nconst SailRestartSoc = global.get(\"SailRestartSoc\");\n\nconst CycleMgmtModes = Object.freeze({\n    OFF: 1,\n    STORAGE: 2,\n    MARINA: 3,\n    SAILING: 4,\n});\n\nlet RestartSoc = null;\n\nif (CycleMgmt === CycleMgmtModes.OFF) {\n    RestartSoc = null;\n} else if (CycleMgmt === CycleMgmtModes.STORAGE) {\n    RestartSoc = StorRestartSoc;\n} else if (CycleMgmt === CycleMgmtModes.MARINA) {\n    RestartSoc = StorRestartSoc;\n} else if (CycleMgmt === CycleMgmtModes.SAILING) {\n    RestartSoc =  SailRestartSoc;\n}\n\nnode.status({text: RestartSoc});\nreturn {\n    payload: RestartSoc,\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 370,
         "y": 520,
         "wires": [
             [
@@ -3307,7 +3308,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "MultiRestartSoc",
+                "p": "RestartSoc",
                 "pt": "global",
                 "to": "payload",
                 "tot": "msg"
@@ -3318,7 +3319,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 620,
         "y": 520,
         "wires": [
             []
@@ -3500,10 +3501,16 @@
                 "color": "#999999"
             },
             {
-                "label": "Sailing",
+                "label": "Marina",
                 "value": "3",
                 "valueType": "num",
                 "color": "#ff6666"
+            },
+            {
+                "label": "Sailing",
+                "value": "4",
+                "valueType": "str",
+                "color": "#009999"
             }
         ],
         "topic": "",
@@ -3513,6 +3520,31 @@
             [
                 "5df4336f66d2270b"
             ]
+        ]
+    },
+    {
+        "id": "ab1dea7f144c4f08",
+        "type": "change",
+        "z": "d2855c6ff5fe1d8c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SolarMaxSoc",
+                "pt": "global",
+                "to": "payload.solar",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 700,
+        "wires": [
+            []
         ]
     },
     {
@@ -3539,7 +3571,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 570,
-        "y": 440,
+        "y": 460,
         "wires": []
     },
     {
@@ -3566,7 +3598,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 570,
-        "y": 500,
+        "y": 520,
         "wires": []
     },
     {
@@ -3582,7 +3614,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 440,
+        "y": 460,
         "wires": [
             [
                 "7aeaa83f6eb21266",
@@ -3612,7 +3644,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 440,
+        "y": 460,
         "wires": [
             [
                 "e17bceca8d9aec8f"
@@ -3626,7 +3658,7 @@
         "name": "Function to manage the solar array based on conditions like battery SOC and balance need. On, Off, or cycle battery on the dashboard",
         "info": "",
         "x": 450,
-        "y": 380,
+        "y": 400,
         "wires": []
     },
     {
@@ -3663,7 +3695,7 @@
         "type": "function",
         "z": "81c7a8a38f0557f0",
         "name": "Determine SolarChargeEnabled based on SoC",
-        "func": "const BattSoc = global.get(\"BattSoc\");\nconst ChargeToFull = global.get(\"ChargeToFull\");\nconst SailMaxSoc = global.get(\"SailMaxSoc\");\nconst SolarMgmt = flow.get(\"SolarMgmt\");\n\nconst SolarMgmtStates = Object.freeze({\n    ON: 1,\n    OFF: 4,\n    AUTO: 20,\n});\n\nif (SolarMgmt === SolarMgmtStates.OFF) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Manual Disable\"});\n    return {\n        payload: 0,\n    }\n}\nif (BattSoc > SailMaxSoc) {\n    if (ChargeToFull === 1) {\n        node.status({fill: \"yellow\", shape: \"dot\", text: \"Charging to Full\"});\n        return {\n            payload: 1,\n        };\n    }\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disable\"});\n    return {\n        payload: 0,\n    };\n}\n\nnode.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\nreturn {\n    payload: 1,\n};",
+        "func": "const BattSoc = global.get(\"BattSoc\");\nconst ChargeToFull = global.get(\"ChargeToFull\");\nconst RestartSoc = global.get(\"RestartSoc\");\nconst SolarChargeEnabled = flow.get(\"SolarChargeEnabled\");\nconst SolarMaxSoc = global.get(\"SolarMaxSoc\");\nconst SolarMgmt = flow.get(\"SolarMgmt\");\n\nconst SolarMgmtStates = Object.freeze({\n    ON: 1,\n    OFF: 4,\n    AUTO: 20,\n});\n\nif (SolarMgmt === SolarMgmtStates.OFF) {\n    node.status({fill: \"red\", shape: \"ring\", text: \"Manual Disable\"});\n    return {\n        payload: 0,\n    }\n}\nif (SolarChargeEnabled) {\n    if (BattSoc > SolarMaxSoc) {\n        if (ChargeToFull === 1) {\n            node.status({fill: \"yellow\", shape: \"dot\", text: \"Charging to Full\"});\n            return {\n                payload: 1,\n            };\n        }\n        node.status({fill: \"red\", shape: \"dot\", text: \"Disable above Max\"});\n        return {\n            payload: 0,\n        };\n    }\n} else {\n    if (BattSoc < RestartSoc) {\n        node.status({fill: \"green\", shape: \"dot\", text: \"Enable\"});\n        return {\n            payload: 1,\n        };\n    }\n    node.status({fill: \"red\", shape: \"dot\", text: \"Disabled while cycling\"});\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3671,7 +3703,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "10f8087979c6514b"
@@ -3700,7 +3732,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "b2d7a81745cd8a06"
@@ -3959,7 +3991,7 @@
         "to": "",
         "reg": false,
         "x": 740,
-        "y": 300,
+        "y": 280,
         "wires": [
             []
         ]
@@ -3977,7 +4009,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "dcbb433e4bdc5525"
@@ -3998,7 +4030,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 560,
-        "y": 620,
+        "y": 640,
         "wires": []
     },
     {
@@ -4023,7 +4055,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "0871559f911fb5b6"
@@ -4039,5 +4071,30 @@
         "x": 50,
         "y": 560,
         "wires": []
+    },
+    {
+        "id": "73f207c6baa9c604",
+        "type": "inject",
+        "z": "81c7a8a38f0557f0",
+        "name": "Initialize SolarChargeEnabled",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "10f8087979c6514b"
+            ]
+        ]
     }
 ]
