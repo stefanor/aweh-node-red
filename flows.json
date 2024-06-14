@@ -145,10 +145,9 @@
     {
         "id": "0d42c411c0f4bfb3",
         "type": "ui_group",
-        "d": true,
         "name": "Debugging and test",
-        "tab": "717fcdffd3a123ff",
-        "order": 1,
+        "tab": "a5c8d9b83d2c4ccd",
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": true,
@@ -160,16 +159,6 @@
         "name": "Aweh Dashboard",
         "icon": "dashboard",
         "order": 2,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "717fcdffd3a123ff",
-        "type": "ui_tab",
-        "d": true,
-        "name": "Debugging and test",
-        "icon": "dashboard",
-        "order": 5,
         "disabled": false,
         "hidden": false
     },
@@ -239,11 +228,21 @@
         "type": "ui_group",
         "name": "Shore Power & Charge Cycle",
         "tab": "7e2c0f9765da0a44",
-        "order": 3,
+        "order": 2,
         "disp": true,
         "width": "9",
         "collapse": true,
         "className": ""
+    },
+    {
+        "id": "a5c8d9b83d2c4ccd",
+        "type": "ui_tab",
+        "d": true,
+        "name": "Debugging",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "5bdd7071be620899",
@@ -413,33 +412,6 @@
         "x": 590,
         "y": 340,
         "wires": []
-    },
-    {
-        "id": "81eb4577edd4847e",
-        "type": "ui_slider",
-        "z": "e595066f0438a795",
-        "name": "",
-        "label": "Battery Soc",
-        "tooltip": "",
-        "group": "0d42c411c0f4bfb3",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": "20",
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 130,
-        "y": 400,
-        "wires": [
-            [
-                "fe11ad36481aa016"
-            ]
-        ]
     },
     {
         "id": "43794d22e6b02aa9",
@@ -870,7 +842,7 @@
         "max": "30",
         "step": "5",
         "className": "",
-        "x": 550,
+        "x": 290,
         "y": 140,
         "wires": [
             [
@@ -901,33 +873,6 @@
         "payloadType": "num",
         "x": 90,
         "y": 140,
-        "wires": [
-            [
-                "9d7b9b40c4e6ac6a"
-            ]
-        ]
-    },
-    {
-        "id": "99922a40cdd73e61",
-        "type": "ui_slider",
-        "z": "a0153a2235a01066",
-        "name": "",
-        "label": "Balancing end times",
-        "tooltip": "",
-        "group": "0d42c411c0f4bfb3",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "1",
-        "step": "0.01",
-        "className": "",
-        "x": 280,
-        "y": 160,
         "wires": [
             [
                 "9d7b9b40c4e6ac6a"
@@ -1031,34 +976,6 @@
         "x": 190,
         "y": 820,
         "wires": []
-    },
-    {
-        "id": "513db6ae3ced0bbf",
-        "type": "ui_numeric",
-        "z": "a0153a2235a01066",
-        "name": "",
-        "label": "balancing bms feedback",
-        "tooltip": "",
-        "group": "0d42c411c0f4bfb3",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "topic",
-        "topicType": "msg",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "1",
-        "step": 1,
-        "className": "",
-        "x": 130,
-        "y": 1320,
-        "wires": [
-            [
-                "bad182fe5ad53e8e"
-            ]
-        ]
     },
     {
         "id": "74d8af590d0e9632",
@@ -1185,7 +1102,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
+        "x": 560,
         "y": 140,
         "wires": [
             []
@@ -1335,7 +1252,7 @@
         "to": "",
         "reg": false,
         "x": 990,
-        "y": 1320,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -1368,7 +1285,7 @@
         "name": "Save State",
         "info": "",
         "x": 60,
-        "y": 1400,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1454,7 +1371,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             [
                 "c1374f4e95ee660f"
@@ -1474,7 +1391,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             [
                 "b5b2aff3bee12061"
@@ -1488,7 +1405,7 @@
         "property": "payload",
         "name": "",
         "x": 590,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             [
                 "d6427b9ecace7567"
@@ -1507,7 +1424,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 790,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -1585,7 +1502,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 450,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             [
                 "0d0d81337a6c63a8"
@@ -2066,7 +1983,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "d6d8fa0ec312a177"
@@ -2087,7 +2004,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 570,
-        "y": 1560,
+        "y": 1520,
         "wires": []
     },
     {
@@ -2112,7 +2029,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "948816cde80707d5"
@@ -2126,7 +2043,7 @@
         "name": "Debug",
         "info": "",
         "x": 50,
-        "y": 1500,
+        "y": 1460,
         "wires": []
     },
     {
@@ -2666,34 +2583,6 @@
         "onlyChanges": false,
         "x": 90,
         "y": 100,
-        "wires": [
-            [
-                "bf03eb793443f2dc"
-            ]
-        ]
-    },
-    {
-        "id": "b513b4bb3d9e4d98",
-        "type": "ui_numeric",
-        "z": "d2855c6ff5fe1d8c",
-        "name": "",
-        "label": "Multiplus function return state",
-        "tooltip": "",
-        "group": "0d42c411c0f4bfb3",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "topic",
-        "topicType": "msg",
-        "format": "{{value}}",
-        "min": "1",
-        "max": "4",
-        "step": 1,
-        "className": "",
-        "x": 180,
-        "y": 160,
         "wires": [
             [
                 "bf03eb793443f2dc"
