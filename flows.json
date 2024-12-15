@@ -2343,7 +2343,7 @@
         "payload": "MultiChargeEnabled",
         "payloadType": "global",
         "x": 160,
-        "y": 820,
+        "y": 800,
         "wires": [
             [
                 "6baec025b7409eda"
@@ -2363,7 +2363,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 880,
+        "y": 860,
         "wires": [
             [
                 "a061d7684091f4c1"
@@ -2392,7 +2392,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 880,
+        "y": 860,
         "wires": [
             [
                 "a5e415478fddb578"
@@ -2406,7 +2406,7 @@
         "name": "Charge Cycle Enabled. Determine Charge status from SoC and Balancing",
         "info": "",
         "x": 260,
-        "y": 760,
+        "y": 740,
         "wires": []
     },
     {
@@ -2431,7 +2431,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 150,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "1987d79b4b49ed81"
@@ -2445,7 +2445,7 @@
         "name": "User interactive Local Values",
         "info": "Auto = 1\nManual = 0",
         "x": 120,
-        "y": 220,
+        "y": 200,
         "wires": []
     },
     {
@@ -2475,7 +2475,7 @@
         "name": "",
         "onlyChanges": false,
         "x": 600,
-        "y": 1020,
+        "y": 1000,
         "wires": []
     },
     {
@@ -2491,7 +2491,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "c8ce07bb531f28cb"
@@ -2520,7 +2520,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 90,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "deb41ea4feccb814"
@@ -2534,7 +2534,7 @@
         "name": "Control MultiPlus from MultiChargeEnabled",
         "info": "",
         "x": 160,
-        "y": 960,
+        "y": 940,
         "wires": []
     },
     {
@@ -2544,7 +2544,7 @@
         "name": "Function Debug",
         "info": "",
         "x": 80,
-        "y": 1100,
+        "y": 1080,
         "wires": []
     },
     {
@@ -2612,7 +2612,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 140,
-        "y": 1160,
+        "y": 1140,
         "wires": [
             [
                 "e096b110d010bf83"
@@ -2640,7 +2640,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 430,
-        "y": 1160,
+        "y": 1140,
         "wires": [
             [
                 "5e57135c4779c7b7"
@@ -2669,7 +2669,7 @@
         "payload": "SailRestartSoc",
         "payloadType": "global",
         "x": 140,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "38dadb3525bc4d5b"
@@ -2697,7 +2697,7 @@
         "step": "5",
         "className": "",
         "x": 380,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "d2d8a2d5abc671c2"
@@ -2726,7 +2726,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 130,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "e096b110d010bf83"
@@ -2754,7 +2754,7 @@
         "step": "5",
         "className": "",
         "x": 370,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "afd91e32e314f86f"
@@ -2783,7 +2783,7 @@
         "payload": "StorMaxSoc",
         "payloadType": "global",
         "x": 140,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "5977a08cd7ea3ac7"
@@ -2812,7 +2812,7 @@
         "payload": "StorRestartSoc",
         "payloadType": "global",
         "x": 140,
-        "y": 440,
+        "y": 420,
         "wires": [
             [
                 "8eec334b7bd645ab"
@@ -2840,7 +2840,7 @@
         "step": "5",
         "className": "",
         "x": 380,
-        "y": 440,
+        "y": 420,
         "wires": [
             [
                 "265293601f0728eb"
@@ -2868,7 +2868,7 @@
         "step": "1",
         "className": "",
         "x": 370,
-        "y": 620,
+        "y": 600,
         "wires": [
             [
                 "38a18d369df71dd4"
@@ -2897,7 +2897,7 @@
         "payload": "SailMaxSoc",
         "payloadType": "global",
         "x": 140,
-        "y": 620,
+        "y": 600,
         "wires": [
             [
                 "fb8ce8ac918c8ba7"
@@ -2917,7 +2917,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 660,
+        "y": 640,
         "wires": [
             [
                 "084c75a90bf0b591",
@@ -2947,7 +2947,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 660,
+        "y": 640,
         "wires": [
             [
                 "a51f92c7f1867893"
@@ -2977,7 +2977,7 @@
         "showGlow": true,
         "name": "Multiplus Charging Enabled",
         "x": 440,
-        "y": 820,
+        "y": 800,
         "wires": []
     },
     {
@@ -3017,7 +3017,7 @@
         ],
         "topic": "",
         "x": 400,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "ee202e80ed9e3ddc"
@@ -3071,7 +3071,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 280,
+        "y": 260,
         "wires": [
             []
         ]
@@ -3096,7 +3096,7 @@
         "to": "",
         "reg": false,
         "x": 630,
-        "y": 440,
+        "y": 420,
         "wires": [
             []
         ]
@@ -3121,7 +3121,7 @@
         "to": "",
         "reg": false,
         "x": 630,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -3146,7 +3146,7 @@
         "to": "",
         "reg": false,
         "x": 600,
-        "y": 580,
+        "y": 560,
         "wires": [
             []
         ]
@@ -3171,7 +3171,7 @@
         "to": "",
         "reg": false,
         "x": 600,
-        "y": 620,
+        "y": 600,
         "wires": [
             []
         ]
@@ -3196,7 +3196,7 @@
         "to": "",
         "reg": false,
         "x": 710,
-        "y": 1160,
+        "y": 1140,
         "wires": [
             []
         ]
@@ -3221,7 +3221,7 @@
         "to": "",
         "reg": false,
         "x": 710,
-        "y": 880,
+        "y": 860,
         "wires": [
             []
         ]
@@ -3246,7 +3246,7 @@
         "to": "",
         "reg": false,
         "x": 610,
-        "y": 660,
+        "y": 640,
         "wires": [
             []
         ]
@@ -3273,7 +3273,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "5edc41e7ca6a3b36"
@@ -3293,7 +3293,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "f46b27d8942deba5"
@@ -3320,7 +3320,7 @@
         "to": "",
         "reg": false,
         "x": 620,
-        "y": 520,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3359,7 +3359,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 1280,
+        "y": 1260,
         "wires": [
             [
                 "e8a168c011c4142c"
@@ -3380,7 +3380,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1280,
+        "y": 1260,
         "wires": []
     },
     {
@@ -3405,7 +3405,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 1280,
+        "y": 1260,
         "wires": [
             [
                 "6893f4f8993d3cfe"
@@ -3434,7 +3434,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 90,
-        "y": 360,
+        "y": 340,
         "wires": [
             [
                 "67fa06e3caa3daf9"
@@ -3461,7 +3461,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 360,
+        "y": 340,
         "wires": [
             []
         ]
@@ -3515,7 +3515,7 @@
         ],
         "topic": "",
         "x": 380,
-        "y": 360,
+        "y": 340,
         "wires": [
             [
                 "5df4336f66d2270b"
@@ -3542,7 +3542,7 @@
         "to": "",
         "reg": false,
         "x": 610,
-        "y": 700,
+        "y": 680,
         "wires": [
             []
         ]
