@@ -3509,7 +3509,7 @@
             {
                 "label": "Sailing",
                 "value": "4",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#009999"
             }
         ],
