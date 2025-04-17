@@ -3,6 +3,15 @@
 This set of flows manages balancing and charging of batteries controlled
 by a Victron BMS.
 
+## Prerequisites
+
+First install these libraries under Settings -> Manage Palette:
+
+* `@victronenergy/node-red-contrib-victron`
+* `node-red-contrib-ui-led`
+* `node-red-contrib-ui-multistate-switch`
+* `node-red-dashboard`
+
 ## License
 
 Copyright 2023-2024, Christophe Delhaye, Stefano Rivera.
